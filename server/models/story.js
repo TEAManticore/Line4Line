@@ -21,4 +21,5 @@ const storySchema = new Schema({
   lines: [ lineSchema ]
 })
 
-module.exports = storySchema
+const Story = mongoose.model('Story', storySchema)
+module.exports = Story
