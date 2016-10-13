@@ -6,6 +6,9 @@ module.exports = {
   },
 
   post: (req, res) => {
+  },
+  verify: (req, res) => {
+    
   }
   
 };

@@ -11,7 +11,7 @@ const userSchema = new Schema({
   //password for a user, required
   password: { type: String, required: true },
   //session id list for a user
-  sessions: [ String ],
+  sessions: String,
   //list of story ids the user has been involved with
   stories: [ String ] 
 })
