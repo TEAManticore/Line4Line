@@ -1,20 +1,20 @@
-var path = require('path');
-var webpack = require('webpack');
+var path = require('path')
+var webpack = require('webpack')
 
-module.exports ={
+module.exports = {
   context: __dirname + '/client',
   entry: './index.js',
   output: {
-    path: __dirname + '/client/dist',
+    path: __dirname + '/client/public/dist',
     filename: 'bundle.js'
   },
 
   module: {
     loaders: [
-      { 
+      {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         query: {
           presets: [
             'es2015',
@@ -24,4 +24,4 @@ module.exports ={
       }
     ]
   }
-};
+}
