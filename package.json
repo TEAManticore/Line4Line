@@ -1,0 +1,39 @@
+{
+  "name": "Line4Line",
+  "version": "1.0.0",
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "description": "Build stories one line at a time",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/nodemon server/index.js --ignore client/",
+    "webpack": "webpack"
+  },
+  "author": "TEAManticore",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "knex": "^0.9.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "sqlite3": "^3.1.1",
+    "webpack": "^1.13.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-latest": "^6.16.0",
+    "nodemon": "^1.8.1"
+  }
+}
