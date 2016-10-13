@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/.bin/nodemon server/server.js --ignore client/",
     "webpack": "webpack",
-    "webpack-dev-server": "webpack-dev-server --content-base /client/public/dist/"
+    "dev": "webpack-dev-server --content-base dist"
   },
   "author": "TEAManticore",
   "dependencies": {

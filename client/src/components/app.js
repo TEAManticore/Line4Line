@@ -1,13 +1,13 @@
 import React from 'react'
 
 class App extends React.Component {
-  contructor (props) {
+  constructor (props) {
     super(props)
   }
 
   render () {
     return (
-      <div> HELLO WORLD </div>
+      <div> HELLO THERE </div>
     )
   }
 }
