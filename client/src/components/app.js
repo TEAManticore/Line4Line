@@ -1,14 +1,15 @@
+import React from 'react'
 
-
-
-class App extends React.Components {
-  contructor(props){
+class App extends React.Component {
+  contructor (props) {
     super(props)
   }
 
-  render(){
+  render () {
     return (
-      <div> HELLO WORLD <div>
+      <div>HELLO WORLD</div>
     )
   }
 }
+
+export default App

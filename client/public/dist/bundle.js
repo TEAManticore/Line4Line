@@ -59,7 +59,7 @@
 	_reactDom2.default.render(_react2.default.createElement(
 	  'h1',
 	  null,
-	  'Tell me a story'
+	  'Tell me a new story'
 	), document.getElementById('root'));
 
 /***/ },
