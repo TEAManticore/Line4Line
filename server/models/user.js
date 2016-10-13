@@ -3,8 +3,6 @@ const bcrypt = require('bcrypt')
 const saltRounds = 10
 const Schema = mongoose.Schema
 
-const listSchema = require('./List.schema.js')
-
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
