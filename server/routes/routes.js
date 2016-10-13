@@ -12,6 +12,8 @@ router.put('/stories/:id', controller.stories.createNewLine);
 
 router.get('/stories/:id', controller.users.get);
 
-router.post('/users', controller.users.post);
+router.post('/sign-up', controller.users.post);
+
+router.post('/sign-in', controller.users.verify);
 
 module.exports = router;
