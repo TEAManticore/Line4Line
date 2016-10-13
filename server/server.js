@@ -10,6 +10,8 @@ const port = process.env.PORT || 8080
 // app level middleware
 app.use(express.static(path.resolve(__dirname, '../client/public')))
 app.use(morgan('dev'))
+app.use(bodyParser.urlencoded( { extended: false } ))
+app.use(bodyParser.json())
 app.use(cookie())
 app.use('/', router)
 
