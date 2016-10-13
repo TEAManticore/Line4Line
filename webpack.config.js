@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports ={
   context: __dirname + '/client',
-  entry: './reactViews.js',
+  entry: './index.js',
   output: {
     path: __dirname + '/client/dist',
     filename: 'bundle.js'
