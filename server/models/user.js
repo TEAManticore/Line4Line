@@ -13,7 +13,7 @@ const userSchema = new Schema({
   //session id list for a user
   sessions: String,
   //list of story ids the user has been involved with
-  stories: [ String ] 
+  stories: [ String ]
 })
 
 userSchema.pre('save', function (next) {

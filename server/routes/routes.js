@@ -1,19 +1,24 @@
-var controller = require('../controllers');
-var router = require('express').Router();
+const stories = require('../controllers/storyController')
+const users = require('../controllers/userController')
+const router = require('express').Router();
 
 //Connect controller methods to their corresponding routes
-router.get('/stories', controller.stories.getAllStories);
+router.get('/stories', stories.getAllStories);
 
-router.get('/stories/:id', controller.stories.getOneStory);
+router.get('/stories/:id', stories.getOneStory);
 
-router.post('/stories', controller.stories.createStory);
+router.post('/stories', stories.createStory);
 
-router.put('/stories/:id', controller.stories.createNewLine);
+router.put('/stories/:id', stories.createNewLine);
 
-router.get('/stories/:id', controller.users.get);
+router.get('/stories/:id', users.get);
 
-router.post('/sign-up', controller.users.post);
+router.post('/sign-up', users.post);
 
-router.post('/sign-in', controller.users.verify);
+router.post('/sign-in', users.verify);
+
+router.get('/', (req,res) => {
+  res.render(path.resolve(__dirname, '../../client/index.html'))
+})
 
 module.exports = router;

@@ -12,12 +12,12 @@ const storySchema = new Schema({
   //tells whether the story is complete or not
   complete: { type: Boolean, default: false },
   //the max length of the story
-  length: Integer,
+  length: Number,
   //max number of users in the story
-  numberUsers: Integer,
+  numberUsers: Number,
   //current line the story is on
-  currentLine: { type: Integer, default: 0 }
-  //list of lines in the story in order 
+  currentLine: { type: Number, default: 0 },
+  //list of lines in the story in order
   lines: [ lineSchema ]
 })
 

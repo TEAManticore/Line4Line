@@ -1,3 +1,4 @@
+const db = require('../models/config')
 var Story = require('../models/story')
 var Line = require('../models/line')
 var User = require('../models/user')
