@@ -1,5 +1,5 @@
 var path = require('path')
-var webpack = require('webpack')
+
 
 module.exports = {
   context: __dirname + '/client',
@@ -12,7 +12,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {

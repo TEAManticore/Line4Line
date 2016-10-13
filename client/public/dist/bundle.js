@@ -54,13 +54,21 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _app = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./src/components/app\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _app2 = _interopRequireDefault(_app);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+<<<<<<< HEAD
 	_reactDom2.default.render(_react2.default.createElement(
 	  'h1',
 	  null,
 	  'Tell me a new story'
 	), document.getElementById('root'));
+=======
+	_reactDom2.default.render(_react2.default.createElement(_app2.default, null), document.getElementById('app'));
+>>>>>>> beab876958aa4c32cbd58d62371207d27b5dfff4
 
 /***/ },
 /* 1 */
