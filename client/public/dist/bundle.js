@@ -60,7 +60,15 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+<<<<<<< HEAD
+	_reactDom2.default.render(_react2.default.createElement(
+	  'h1',
+	  null,
+	  'Tell me a new story'
+	), document.getElementById('root'));
+=======
 	_reactDom2.default.render(_react2.default.createElement(_app2.default, null), document.getElementById('app'));
+>>>>>>> beab876958aa4c32cbd58d62371207d27b5dfff4
 
 /***/ },
 /* 1 */
