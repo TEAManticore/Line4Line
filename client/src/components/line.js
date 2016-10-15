@@ -6,11 +6,21 @@ class Line extends React.Component {
     super(props)
     this.state = {
       hidden: false,
-      lock: false,
-      value: ''
+      lock: true,
+      text: this.props.text,
+      userId: this.props.userId,
     }
+
+    // 
+    // if (this.key < this.props.currentLine){
+    //   this.setState({
+    //     lock: true
+    //   })
+    // } 
   }
 
+  //send text to server via helpers
+  //lock in text value
   handleSubmit(e){
     e.preventDefault()  
     this.setState({
@@ -18,25 +28,25 @@ class Line extends React.Component {
     })
     var storyLine = {
       userId: this.props.userId,
-      text: this.state.value
+      text: this.state.text
     }
-    help.sendToServer()
+    help.sendToServer(storyLine)
   }
 
+  //observe change to input field as user types
   handleChange(e){
-    //observe change to input field as user types
     e.preventDefault()
     this.setState({
-      value: e.target.value
+      text: e.target.value
     })
   }
 
   render(){
     return (
-      <div>  
-        <h3 className="userLine">{this.props.userid}</h3> 
+      <div className="lineContainer">  
         <form onSubmit={this.handleSubmit.bind(this)} className="lineForm">
-          <input onChange={(e) => this.handleChange(e)} className="lineInput" type="text" placeholder="keep the story going!" />
+        <h3 className="userLine">user</h3>
+          <input onChange={(e) => this.handleChange(e)} className="lineInput" type="text" placeholder="..." />
         </form>
       </div>  
     )
