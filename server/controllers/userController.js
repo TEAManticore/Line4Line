@@ -35,8 +35,34 @@ module.exports = {
   },
 
   verify: (req, res) => {
-    const session = req.cookies.sessionId
-    console.log(session)
+    const username = req.body.username
+    const password = req.body.password
+    console.log(username,password)
+    User.findOne({username: username})
+    .then((user) => {
+      if(user){
+        console.log(user)
+        user.comparePassword(password, function(err, match) {
+          if (match) {
+            console.log(match)
+            const session = uuid.v4()
+            user.sessions = session
+            user.save((data) => {
+              res.cookie('sessionId', session)
+              return res.redirect('/')
+            },(err) => {
+              return res.status(404).send('User could not be updated')
+            })
+          } else {
+            return res.redirect('/sign-in');
+          }
+        });
+      }
+    })
+    .catch(function(err) {
+      console.log(err);
+      return res.redirect('/sign-in');
+    });   
   }
 
 };
