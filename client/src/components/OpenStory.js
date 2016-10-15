@@ -5,7 +5,9 @@ const OpenStory = (props) => {
     <div className="openStoryWrap">
       <div className="openStoryTitle">{props.story.title}</div>
       <div className="openStoryUsers">{props.story.users.length}/{props.story.numberUsers}</div>
-      <button className="joinButton">Join</button>
+      <div className='openStoryJoinWrap'>
+        <button className="joinButton">Join</button>
+      </div>
     </div>
   )
 }
