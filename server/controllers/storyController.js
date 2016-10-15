@@ -5,13 +5,28 @@ const User = require('../models/user')
 
 module.exports = {
   getAllStories: (req, res) => {
-    // Story.find((stories) => {
-    //   res.send(stories);
-    // })
+    Story.find({complete: false, $where: 'this.users.length < this.numberUsers'})
+    .then((stories) => {
+      res.send(stories)
+    })
   },
   createNewLine: (req, res) => {
-    // var user = User.find({session: req.body.session})
-    // var line = new Line({userId: user.userId, text: req.body.line);
+
+    var lineContent = req.body.text
+
+    Story.findOne({_id: req.params.id}) // Find the story that they are trying to add the line to
+    .then((story) => {
+      User.findOne({sessions: req.cookies.sessionId}) // Find current user
+      .then((user) => {
+        new Line({userId: user._id, story: story._id, text: lineContent}).save() // Create the new line and associate it with the user and story
+        .then((line) => {
+          story.update({ $push: { lines: line._id }})
+          .then((story) => {
+            res.send(line)
+          })
+        })
+      })
+    })
   },
   createStory: (req, res) => {
     const length = req.body.length
@@ -29,6 +44,7 @@ module.exports = {
     })
     .catch((err) => {
       console.log('Could not find user with that session')
+      return res.status(404).send('User not found')
     })
 
 
@@ -45,4 +61,5 @@ module.exports = {
       return res.status(404).send('Story not found')
     })
   }
+
 };
