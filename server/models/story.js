@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 //call on the line model for an attribute further
 //in the model
-const lineSchema = require('./line')
+const Line = require('./line')
 
 const storySchema = new Schema({
   //title of the story
@@ -18,7 +18,7 @@ const storySchema = new Schema({
   //current line the story is on
   currentLine: { type: Number, default: 0 },
   //list of lines in the story in order
-  lines: [ lineSchema ]
+  lines: [ {type: Schema.ObjectId, ref: 'Line'} ]
 })
 
 const Story = mongoose.model('Story', storySchema)
