@@ -19,11 +19,12 @@ module.exports = {
         var newUser = new User({
           username: username,
           password: password,
-          session: uuid.v4()
+          sessions: uuid.v4()
         })
         newUser.save()
         .then((user) => {
-          res.cookie('session', user.session)
+          console.log(user)
+          res.cookie('sessionId', user.sessions)
           res.redirect('/')
         })
       } else {
@@ -34,7 +35,34 @@ module.exports = {
   },
 
   verify: (req, res) => {
-
+    const username = req.body.username
+    const password = req.body.password
+    console.log(username,password)
+    User.findOne({username: username})
+    .then((user) => {
+      if(user){
+        console.log(user)
+        user.comparePassword(password, function(err, match) {
+          if (match) {
+            console.log(match)
+            const session = uuid.v4()
+            user.sessions = session
+            user.save((data) => {
+              res.cookie('sessionId', session)
+              return res.redirect('/')
+            },(err) => {
+              return res.status(404).send('User could not be updated')
+            })
+          } else {
+            return res.redirect('/sign-in');
+          }
+        });
+      }
+    })
+    .catch(function(err) {
+      console.log(err);
+      return res.redirect('/sign-in');
+    });   
   }
 
 };
