@@ -17,13 +17,15 @@ class Line extends React.Component {
       lock: true
     })
     var storyLine = {
-      line: this.state.value
+      userId: this.props.userId,
+      text: this.state.value
     }
     help.sendToServer()
   }
 
   handleChange(e){
     //observe change to input field as user types
+    e.preventDefault()
     this.setState({
       value: e.target.value
     })
