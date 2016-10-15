@@ -22,15 +22,33 @@ module.exports = {
             'react'
           ]
         }
-      },  
+      },
+
+      { 
+        test: /\.json$/,
+        loader: 'json-loader'
+      },
+
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader")
       },
-      { test: /\.png$/, loader: "file-loader" }
+      
+      { 
+        test: /\.png$/,
+        loader: "file-loader"
+      }
     ]
-  }, 
+  },
+
   plugins: [
     new ExtractTextPlugin('styles.css')
-  ]
+  ],
+
+  node: {
+    console: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  }
 }
