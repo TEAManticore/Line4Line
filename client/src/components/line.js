@@ -33,9 +33,12 @@ class Line extends React.Component {
 
   render(){
     return (
-      <form onSubmit={this.handleSubmit.bind(this)} className="lineForm">
-        <input onChange={(e) => this.handleChange(e)} className="lineInput" type="text" placeholder="keep the story going!" />
-      </form>
+      <div>  
+        <h3 className="userLine">{this.props.userid}</h3> 
+        <form onSubmit={this.handleSubmit.bind(this)} className="lineForm">
+          <input onChange={(e) => this.handleChange(e)} className="lineInput" type="text" placeholder="keep the story going!" />
+        </form>
+      </div>  
     )
   }
 }
