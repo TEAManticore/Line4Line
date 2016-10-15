@@ -14,9 +14,9 @@ module.exports = {
     // var line = new Line({userId: user.userId, text: req.body.line);
   },
   createStory: (req, res) => {
-    var length = req.body.length
-    var title = req.body.title
-    var numberUsers = req.body.numberUsers
+    const length = req.body.length
+    const title = req.body.title
+    const numberUsers = req.body.numberUsers
 
     console.log(req.cookies)
     User.findOne({sessions: req.cookies.sessionId})
@@ -38,7 +38,7 @@ module.exports = {
     console.log(req.params)
     Story.findOne({_id: req.params.id})
     .then((story) => {
-        res.send(story)
+        res.json(story)
     })
     .catch((err) => {
       console.log('Could not find story with that id')
