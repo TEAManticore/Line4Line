@@ -2,3 +2,5 @@
 node_modules
 dist/bundle.js
 client/src/dummyData.js
+./dist/styles.css
+

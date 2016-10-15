@@ -13,8 +13,9 @@ class Story extends React.Component {
   render(){
     return (
       <div className="story">  
-        {dummyData.map((l, i) => 
-          <Line line={l.text} userid={l.userId} key={i} />
+        <h2 className="title"> TITLE HERE</h2>
+        {this.state.lines.map((l, i) => 
+          <Line userid={l.userId} key={i} />
         )}
       </div>  
     )
