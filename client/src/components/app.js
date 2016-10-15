@@ -3,6 +3,7 @@ import Lobby from './Lobby'
 import Story from './Story'
 import SignUp from './SignUp'
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
+import SignIn from './SignIn'
 
 class App extends React.Component {
   constructor (props) {
@@ -20,6 +21,10 @@ class App extends React.Component {
           <Route path='/' component={SignIn} />
           <Route path='/sign-up' component={SignUp} />
         </Router>
+        <Lobby />
+        <Story />
+        <SignUp />
+        <SignIn />
       </div>
     )
   }
