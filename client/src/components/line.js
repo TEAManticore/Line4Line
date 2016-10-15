@@ -1,4 +1,4 @@
-var help = require('../helpers')
+//var help = require('../helpers')
 import React from 'react'
 
 class Line extends React.Component {
@@ -19,7 +19,7 @@ class Line extends React.Component {
     var storyLine = {
       line: this.state.value
     }
-    help.sendToServer()
+    //help.sendToServer()
   }
 
   handleChange(e){

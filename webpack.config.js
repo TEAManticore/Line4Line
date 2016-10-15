@@ -19,7 +19,18 @@ module.exports = {
             'react'
           ]
         }
+      },
+      { 
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
+  },
+
+  node: {
+    console: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
   }
 }

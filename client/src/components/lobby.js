@@ -1,5 +1,6 @@
 import React from 'react'
 import Request from 'request'
+import OpenStory from './OpenStory'
 
 class Lobby extends React.Component {
   constructor (props) {
@@ -28,7 +29,7 @@ class Lobby extends React.Component {
   render () {
     return (
       <div>
-        {this.state.stories.map((story) =>
+        {this.state.stories.map(story =>
           <OpenStory story={story} />
         )}
       </div>

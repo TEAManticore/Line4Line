@@ -12,9 +12,9 @@ class App extends React.Component {
 
   render () {
     return (
-      <h1>test</h1>
-      <Lobby />
       <div> 
+        <h1>test</h1>
+        <Lobby />
         <Story />
       </div>
     )
