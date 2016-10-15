@@ -1,10 +1,16 @@
 .DS_Store
 node_modules
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
 dist/bundle.js
 client/src/dummyData.js
 ./dist/styles.css
 
+<<<<<<< HEAD
 =======
 ./server/db
 >>>>>>> defd8f6d7312a4ad7eb4bf99824c863dab9eb88c
+=======
+>>>>>>> master
