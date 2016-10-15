@@ -1,14 +1,36 @@
 import React from 'react'
+import Request from 'request'
 
 class Lobby extends React.Component {
   constructor (props) {
     super(props)
+    this.state = {
+      stories: []
+    }
   }
-  
+
+  loadStoriesFromServer () {
+    Request.get('/stories').on('response', function(response) {
+      console.log('Got stories: ', response.statusCode)
+    })
+    .then((allStories) => {
+      const openStories = allStories.filter((story) => !story.complete)
+      this.setState({
+        stories: openStories
+      })
+    })
+  }
+
+  componentDidMount () {
+    this.loadStoriesFromServer().bind(this)
+  }
+
   render () {
     return (
       <div>
-        <h3>Join a story or create your own</h3>
+        {this.state.stories.map((story) =>
+          <OpenStory story={story} />
+        )}
       </div>
     )
   }
