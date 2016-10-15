@@ -29,7 +29,7 @@ class Lobby extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='lobby'>
         {this.state.stories.map((story, i) =>
           <OpenStory story={story} key={i}/>
         )}
