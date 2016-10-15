@@ -9,7 +9,6 @@ module.exports = {
   },
 
   post: (req, res) => {
-    console.log('=======>',req.body)
     const username =  req.body.username
     const password = req.body.password
 
@@ -23,7 +22,6 @@ module.exports = {
         })
         newUser.save()
         .then((user) => {
-          console.log(user)
           res.cookie('sessionId', user.sessions)
           res.redirect('/')
         })
@@ -37,11 +35,11 @@ module.exports = {
   verify: (req, res) => {
     const username = req.body.username
     const password = req.body.password
-    console.log(username,password)
+
     User.findOne({username: username})
     .then((user) => {
       if(user){
-        console.log(user)
+
         user.comparePassword(password, function(err, match) {
           if (match) {
             console.log(match)
@@ -51,17 +49,19 @@ module.exports = {
               res.cookie('sessionId', session)
               return res.redirect('/')
             },(err) => {
-              return res.status(404).send('User could not be updated')
+              return res.status(400).send('User could not be updated')
             })
           } else {
-            return res.redirect('/sign-in');
+            return res.status(404).send('Password incorrect');
           }
         });
+      } else {
+        return res.status(404).send('User not found')
       }
     })
     .catch(function(err) {
       console.log(err);
-      return res.redirect('/sign-in');
+      return res.status(500).send('idk lol');
     });   
   }
 
