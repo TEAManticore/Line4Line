@@ -1,8 +1,8 @@
 import React from 'react'
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
 import Lobby from './Lobby'
 import Story from './Story'
 import SignUp from './SignUp'
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
 import SignIn from './SignIn'
 
 class App extends React.Component {
@@ -18,13 +18,10 @@ class App extends React.Component {
       <div> 
         <h1>Line4Line</h1>
         <Router history={hashHistory}>
-          <Route path='/' component={SignIn} />
+          <Route path='/' component={Lobby} />
+          <Route path='/sign-in' component={SignIn} />
           <Route path='/sign-up' component={SignUp} />
         </Router>
-        <Lobby />
-        <Story />
-        <SignUp />
-        <SignIn />
       </div>
     )
   }
