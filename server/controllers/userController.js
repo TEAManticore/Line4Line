@@ -39,10 +39,8 @@ module.exports = {
     User.findOne({username: username})
     .then((user) => {
       if(user){
-
         user.comparePassword(password, function(err, match) {
           if (match) {
-            console.log(match)
             const session = uuid.v4()
             user.sessions = session
             user.save((data) => {
