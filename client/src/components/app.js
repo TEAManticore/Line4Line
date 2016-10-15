@@ -1,6 +1,7 @@
 import React from 'react'
 import Lobby from './Lobby'
 import Story from './Story'
+import SignUp from './SignUp'
 
 class App extends React.Component {
   constructor (props) {
@@ -16,6 +17,7 @@ class App extends React.Component {
         <h1>Line4Line</h1>
         <Lobby />
         <Story />
+        <SignUp />
       </div>
     )
   }
