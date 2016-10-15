@@ -5,32 +5,27 @@ const User = require('../models/user')
 
 module.exports = {
   getAllStories: (req, res) => {
-    // Story.find((stories) => {
-    //   res.send(stories);
-    // })
+    Story.find({complete: false})
+    .then((stories) => {
+      res.send(stories)
+    })
   },
   createNewLine: (req, res) => {
+
     var lineContent = req.body.text
-    console.log('cookies: ', req.cookies.sessionId)
-    console.log(lineContent);
-    User.findOne({sessions: req.cookies.sessionId}) // Find current user
-    .then((user) => {
-      console.log('USER', user)
-      new Line({userId: user._id, text: lineContent}).save() // Create the new line and associate it with the user's id
-      .then((line) => {
-        console.log('LINE', line)
-        Story.findOne({_id: req.params.id}) // Find the story that they are trying to add the line to
-        .then((story) => {
-          story.update({ $push: { lines: line }}).save() // update the story by adding the line
+
+    Story.findOne({_id: req.params.id}) // Find the story that they are trying to add the line to
+    .then((story) => {
+      User.findOne({sessions: req.cookies.sessionId}) // Find current user
+      .then((user) => {
+        new Line({userId: user._id, story: story._id, text: lineContent}).save() // Create the new line and associate it with the user and story
+        .then((line) => {
+          story.update({ $push: { lines: line._id }})
           .then((story) => {
-            console.log('Successfully updated story')
+            res.send(line)
           })
         })
       })
-    })
-    .catch((err) => {
-      console.log('Could not find user with that session')
-      return res.status(404).send('User not found')
     })
   },
   createStory: (req, res) => {
