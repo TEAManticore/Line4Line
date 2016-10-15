@@ -19,11 +19,12 @@ module.exports = {
         var newUser = new User({
           username: username,
           password: password,
-          session: uuid.v4()
+          sessions: uuid.v4()
         })
         newUser.save()
         .then((user) => {
-          res.cookie('session', user.session)
+          console.log(user)
+          res.cookie('sessionId', user.sessions)
           res.redirect('/')
         })
       } else {
@@ -34,7 +35,8 @@ module.exports = {
   },
 
   verify: (req, res) => {
-
+    const session = req.cookies.sessionId
+    console.log(session)
   }
 
 };
