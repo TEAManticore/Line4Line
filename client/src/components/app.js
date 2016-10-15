@@ -1,6 +1,8 @@
 import React from 'react'
 import Lobby from './Lobby'
 import Story from './Story'
+import SignUp from './SignUp'
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
 
 class App extends React.Component {
   constructor (props) {
@@ -14,8 +16,10 @@ class App extends React.Component {
     return (
       <div> 
         <h1>Line4Line</h1>
-        <Lobby />
-        <Story />
+        <Router history={hashHistory}>
+          <Route path='/' component={SignIn} />
+          <Route path='/sign-up' component={SignUp} />
+        </Router>
       </div>
     )
   }
