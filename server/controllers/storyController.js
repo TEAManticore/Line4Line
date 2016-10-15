@@ -14,9 +14,27 @@ module.exports = {
     // var line = new Line({userId: user.userId, text: req.body.line);
   },
   createStory: (req, res) => {
+    var length = req.body.length
+    var title = req.body.title
+    var numberUsers = req.body.numberUsers
+
+    console.log(req.cookies)
+    User.findOne({sessions: req.cookies.sessionId})
+    .then((user)=>{
+      new Story({title: title, length: length, users: [user._id], numberUsers: numberUsers }).save()
+      .then((story) => {
+        console.log("Story saved: ", story)
+        res.redirect('/')
+      })
+    })
+    .catch((err) => {
+      console.log('Couldnt find user with that session')
+    })
+
+
 
   },
   getOneStory: (req, res) => {
-    
+
   }
 };
