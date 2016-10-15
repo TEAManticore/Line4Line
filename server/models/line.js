@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const Story = require('./story')
@@ -17,4 +15,3 @@ const lineSchema = new Schema({
 
 const Line = mongoose.model('Line', lineSchema)
 module.exports = Line
->>>>>>> back-end-dev

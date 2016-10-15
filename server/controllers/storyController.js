@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 const db = require('../models/config')
 const Story = require('../models/story')
 const Line = require('../models/line')
@@ -48,4 +46,3 @@ module.exports = {
     })
   }
 };
->>>>>>> back-end-dev

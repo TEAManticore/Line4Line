@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 //call on the line model for an attribute further
@@ -25,4 +23,3 @@ const storySchema = new Schema({
 
 const Story = mongoose.model('Story', storySchema)
 module.exports = Story
->>>>>>> back-end-dev
