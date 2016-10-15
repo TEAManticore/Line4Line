@@ -2,6 +2,7 @@ import React from 'react'
 import Lobby from './Lobby'
 import Story from './Story'
 import SignUp from './SignUp'
+import SignIn from './SignIn'
 
 class App extends React.Component {
   constructor (props) {
@@ -18,6 +19,7 @@ class App extends React.Component {
         <Lobby />
         <Story />
         <SignUp />
+        <SignIn />
       </div>
     )
   }

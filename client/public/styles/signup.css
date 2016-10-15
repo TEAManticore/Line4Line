@@ -4,10 +4,11 @@
   border-radius: 5px;
   width: 75%;
   margin: auto;
+  color: black;
 }
 
 .signupButtonWrap {
-  margin: auto;
+  margin: 10px auto 10px auto;
   width: 30%;
 }
 
@@ -17,4 +18,5 @@
   height: 50px;
   width: 200px;
   font-size: 1.3em;
+  margin: 0px 10px 0px 10px;
 }

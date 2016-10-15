@@ -12,6 +12,7 @@ const SignUp = () => {
 
   return (
     <div className="signupWrap">
+      <h2>Sign Up</h2>
       <form onSubmit={sendUserData}>
         <input className="signupInput" id="signupName" type="text" placeholder="pick a username..." />
         <input className="signupInput" id="signupPassword" type="password" placeholder="password" />
