@@ -1,10 +1,11 @@
 import React from 'react'
 
-const OpenStory = (props)=> {
+const OpenStory = (props) => {
   return (
-    <div>
-      <h4>{props.story.title}</h4>
-      <div>{props.story.users.length}/{props.story.numberUsers}</div>
+    <div className="openStoryWrap">
+      <div className="openStoryTitle">{props.story.title}</div>
+      <div className="openStoryUsers">{props.story.users.length}/{props.story.numberUsers}</div>
+      <button className="joinButton">Join</button>
     </div>
   )
 }

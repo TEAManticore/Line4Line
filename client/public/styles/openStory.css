@@ -1,0 +1,31 @@
+.openStoryWrap {
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.openStoryTitle {
+  font-size: 1.2em;
+  display: inline-block;
+  width: 40%;
+}
+
+.openStoryUsers {
+  font-size: 1.2em;
+  display: inline-block;
+  width: 20%
+}
+
+.joinButton {
+  color: white;
+  background-color: black;
+  font-size: 1.2em;
+  font-weight: 400;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 6px;
+  text-align: center;
+  padding: 14px 30px;
+  width: 150px;
+}
