@@ -1,5 +1,6 @@
 import React from 'react'
 import Lobby from './Lobby'
+import Story from './Story'
 
 class App extends React.Component {
   constructor (props) {
@@ -13,6 +14,9 @@ class App extends React.Component {
     return (
       <h1>test</h1>
       <Lobby />
+      <div> 
+        <Story />
+      </div>
     )
   }
 }
