@@ -28,13 +28,21 @@ module.exports = {
       })
     })
     .catch((err) => {
-      console.log('Couldnt find user with that session')
+      console.log('Could not find user with that session')
     })
 
 
 
   },
   getOneStory: (req, res) => {
-
+    console.log(req.params)
+    Story.findOne({_id: req.params.id})
+    .then((story) => {
+        res.send(story)
+    })
+    .catch((err) => {
+      console.log('Could not find story with that id')
+      return res.status(404).send('Story not found')
+    })
   }
 };
