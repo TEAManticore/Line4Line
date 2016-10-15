@@ -1,7 +1,6 @@
-const db = require('../models/config')
-const Story = require('../models/story')
-const Line = require('../models/line')
-const User = require('../models/user')
+var Story = require('../models/story')
+var Line = require('../models/line')
+var User = require('../models/user')
 
 module.exports = {
   getAllStories: (req, res) => {
