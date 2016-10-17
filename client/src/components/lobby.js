@@ -7,12 +7,12 @@ class Lobby extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      stories: dummyStories
+      stories: []
     }
   }
 
   // loadStoriesFromServer () {
-  //   Request.get('/stories').on('response', function(response) {
+  //   Request.get('http://localhost:8080/stories').on('response', function(response) {
   //     console.log('Got stories: ', response.statusCode)
   //   })
   //   .then((allStories) => {
@@ -23,9 +23,21 @@ class Lobby extends React.Component {
   //   })
   // }
 
-  // componentDidMount () {
-  //   this.loadStoriesFromServer().bind(this)
-  // }
+  componentDidMount () {
+    this.serverRequest = Request.get('http://localhost:8081/stories').on('response', function(response) {
+      console.log('Got stories: ', response.statusCode)
+    })
+    // .then((openStories) => {
+    //   this.setState({
+    //     stories: openStories
+    //   })
+    // })
+    .bind(this)
+  }
+
+  componentWillUnmount () {
+    this.serverRequest.abort()
+  }
 
   render () {
     return (

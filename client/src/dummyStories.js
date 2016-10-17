@@ -8,13 +8,5 @@ module.exports = [
     currentLine: 0,
     lines: []
   },
-  {
-    title: 'Kanye, The Gay Fish',
-    users: ['Stan', 'Kyle', 'Carman', 'Jimmy', 'Kanye'],
-    complete: false,
-    length: 10,
-    numberUsers: 10,
-    currentLine: 0,
-    lines: []
-  }
+  {title: 'Kanye, The Gay Fish',users: ['Stan', 'Kyle', 'Carman', 'Jimmy', 'Kanye'],complete: false,length: 10,numberUsers: 10,currentLine: 0,lines: []}
 ]

@@ -8,7 +8,12 @@ const router = require('./routes/routes')
 const app = express()
 const port = process.env.PORT || 8080
 // app level middleware
-app.use(express.static(path.resolve(__dirname, '../client/public')))
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Content-Type', 'application/json')
+  next()
+})
+app.use(express.static(path.resolve(__dirname, '../dist')))
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded( { extended: false } ))
 app.use(bodyParser.json())

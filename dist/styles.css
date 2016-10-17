@@ -28,8 +28,68 @@ body {
   text-align: center;
   padding: 14px 30px;
   width: 100%;
-}.userLine{
-  
+}
+.lineContainer{
+  display: table;
+  margin: 0px auto;
+  width: 70%;
+}
+
+.userLine{
+  width: auto;
+  height: 55px;
+  margin: 10px;
+  padding: 10px;
+  float: left;
+  vertical-align: middle;
+}
+
+.lineForm{
+  margin: 0px auto;
+}
+
+.lineInput{
+  float: right;
+  width: 80%;
+  height: 50px;
+  margin: 10px auto;
+  padding: 10px;
+  border: none;
+  border-bottom: solid 5px white;
+  transition: border 0.3s;
+  font-size: 18px;
+  font-weight: 800;
+  background-color: black;
+  color: white;
+}
+
+.lineInput::placeholder {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.lineInput:focus,
+ .lineInput.focus {
+  border-bottom: solid 5px white;
+  outline: none;
+}.storyContainer{
+  display: table;
+  background-color: black;
+  border-radius: 20px;
+  border: solid white 3px;
+  margin: 70px 100px ;
+  box-shadow: 30px 15px rgba(133, 133, 133, 0.15);
+  height: auto;
+  width: 90%;
+  padding-bottom: 100px;
+}
+
+.title {
+  padding-top: 60px;
+  text-align: center;
+  font-family: helvetica;
+  border: 3px;
+  font-size: 50px;
 }.lobby {
   text-align: left;
 }.openStoryWrap {
