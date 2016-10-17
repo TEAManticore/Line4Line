@@ -24,15 +24,3 @@
   width: 30%;
   padding-left: 5%;
 }
-
-.joinButton {
-  color: white;
-  background-color: black;
-  font-size: 1.2em;
-  font-weight: 800;
-  border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 6px;
-  text-align: center;
-  padding: 14px 30px;
-  width: 100%;
-}
