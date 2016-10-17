@@ -1,5 +1,5 @@
 import React from 'react'
-import Request from 'request'
+import request from 'request'
 import OpenStory from './OpenStory'
 import dummyStories from '../dummyStories'
 
@@ -24,20 +24,22 @@ class Lobby extends React.Component {
   // }
 
   componentDidMount () {
-    this.serverRequest = Request.get('http://localhost:8081/stories').on('response', function(response) {
-      console.log('Got stories: ', response.statusCode)
+    this.setState({
+      stories: [{title: 'Kanye, The Gay Fish',users: ['Stan', 'Kyle', 'Carman', 'Jimmy', 'Kanye'],complete: false,length: 10,numberUsers: 10,currentLine: 0,lines: []}]
     })
-    // .then((openStories) => {
+    // request.get('http://localhost:8080/stories')
+    //   .on('response', function(response) {
+    //   //console.log('Got stories: ', response);
     //   this.setState({
-    //     stories: openStories
+    //     stories: response.body
     //   })
     // })
-    .bind(this)
+    // .bind(this)
   }
 
-  componentWillUnmount () {
-    this.serverRequest.abort()
-  }
+  // componentWillUnmount () {
+  //   this.serverRequest.abort()
+  // }
 
   render () {
     return (
