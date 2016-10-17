@@ -4,6 +4,8 @@ import Lobby from './Lobby'
 import Story from './Story'
 import SignUp from './SignUp'
 import SignIn from './SignIn'
+import NavBar from './NavBar'
+import NavContainer from './NavContainer'
 
 class App extends React.Component {
   constructor (props) {
@@ -15,12 +17,14 @@ class App extends React.Component {
 
   render () {
     return (
-      <div> 
+      <div>
         <h1>Line4Line</h1>
         <Router history={hashHistory}>
-          <Route path='/' component={Lobby} />
-          <Route path='/sign-in' component={SignIn} />
-          <Route path='/sign-up' component={SignUp} />
+          <Route path='/' component={NavContainer}>
+            <IndexRoute component={Lobby} />
+            <Route path='/sign-up' component={SignUp} />
+            <Route path='/sign-in' component={SignIn} /> 
+          </Route>
         </Router>
       </div>
     )
