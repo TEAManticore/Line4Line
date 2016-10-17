@@ -2,6 +2,7 @@
   display: table;
   background-color: black;
   border-radius: 20px;
+  border: solid white 3px;
   margin: 70px 100px ;
   box-shadow: 30px 15px rgba(133, 133, 133, 0.15);
   height: auto;
