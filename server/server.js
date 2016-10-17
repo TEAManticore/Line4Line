@@ -10,7 +10,7 @@ const port = process.env.PORT || 8080
 // app level middleware
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Content-Type', 'application/json')
+  res.setHeader('Content-Type', 'application/JSON')
   next()
 })
 app.use(express.static(path.resolve(__dirname, '../dist')))
