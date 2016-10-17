@@ -20,11 +20,9 @@ class App extends React.Component {
       <div>
         <h1>Line4Line</h1>
         <Router history={hashHistory}>
-          <Route path='/' component={NavContainer}>
-            <IndexRoute component={Lobby} />
-            <Route path='/sign-up' component={SignUp} />
-            <Route path='/sign-in' component={SignIn} /> 
-          </Route>
+          <Route path='/' component={Lobby} />
+          <Route path='/sign-up' component={SignUp} />
+          <Route path='/sign-in' component={SignIn} /> 
         </Router>
       </div>
     )
