@@ -42,14 +42,31 @@ class Story extends React.Component {
       })
     })   
   }
+
+
+  //catch bubbled up events from line component
+  manageLines(e){
+    this.state.currentLine++
+    console.log(this.state.currentLine)
+    if (this.state.currentLine === this.state.length){
+      this.manageCompletion()
+    }
+  }
+
+  manageCompletion(){
+    console.log("story complete!")
+  }
+
       
   render(){
     return (
       <div className="storyContainer" >  
         <h2 className="title">{ this.state.title }</h2>
-        {this.state.lines.map((l, i) => 
-          <Line story={this.state.storyId} userid={l.userId} text={l.text} key={i} />
-        )}
+        <div onSubmit={this.manageLines.bind(this)}>
+          {this.state.lines.map((l, i) => 
+            <Line story={this.state.storyId} userid={l.userId} text={l.text} key={i} />
+          )}
+        </div>
       </div>  
     )
   }

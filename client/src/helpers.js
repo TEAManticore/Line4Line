@@ -11,9 +11,9 @@ var helpers = {
       console.log(response)
     })
     .catch(err => {
-      helpers.fakeStory.lines.push(lineData);
-      helpers.fakeStory.currentLine++
-      console.log(helpers.fakeStory)
+      // helpers.fakeStory.lines.push(lineData);
+      // helpers.fakeStory.currentLine++
+      // console.log(helpers.fakeStory)
     })
   },
 
@@ -37,9 +37,9 @@ var helpers = {
       "title": "Cubs @ Dodgers",
       "users": [ "1", "2", "3", "4", "5", "6", "7" ],
       "complete": "false",
-      "length": "7",
+      "length": 7,
       "numberUsers": 7,
-      "currentLine": 1,
+      "currentLine": 0,
       "lines": [
         {"userId": "1", "text": ""},
         {"userId": "2", "text": ""},

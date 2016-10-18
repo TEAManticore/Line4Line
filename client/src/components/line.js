@@ -13,20 +13,19 @@ class Line extends React.Component {
     }
   }
 
-  //send text to server via helpers
-  //lock in text value
   handleSubmit(e){
     e.preventDefault()  
+    //lock in text value
     this.setState({
       lock: true,
     })
-
 
     var lineData = {
       userId: this.props.userId,
       text: this.state.text,
       story: this.state.story
     }
+    //send text to server via helpers
     Help.sendLineData(lineData)
   }
 
@@ -40,19 +39,20 @@ class Line extends React.Component {
 
   render(){
     return (
-      <div className="lineContainer">  
-      {!this.state.lock ?  
-        //while lock === false, render form  
+      <div className="lineContainer">   
+      {
+        !this.state.lock ?  
+        //if user hasn't submitted text, render form  
         <form ref="form" onSubmit={this.handleSubmit.bind(this)} className="lineForm">
           <h3 className="userLine">user</h3>
           <input name="input" value={this.state.text} onChange={(e) => this.handleChange(e)} className="lineInput" type="text" placeholder="..." />
         </form> :
-        //while lock === true, render div
+        //if user has already submitted text, render text as div
         <div className="lineForm">
           <div className="userLine">user</div>
           <div className="lineInput">{this.state.text}</div>
         </div>
-        }
+      }
       </div>  
     )
   }
