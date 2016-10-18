@@ -6,18 +6,19 @@ class Line extends React.Component {
     super(props)
     this.state = {
       hidden: false,
-      lock: true,
+      lock: false,
       text: this.props.text,
       userId: this.props.userId,
       story: this.props.story
     }
+  }
 
-    // 
-    // if (this.key < this.props.currentLine){
-    //   this.setState({
-    //     lock: true
-    //   })
-    // } 
+  componentDidMount() {
+    if (this.currentLine > this.key){
+      this.setState({
+        lock: true
+      })
+    }
   }
 
   //send text to server via helpers
@@ -25,12 +26,15 @@ class Line extends React.Component {
   handleSubmit(e){
     e.preventDefault()  
     this.setState({
-      lock: true
+      lock: true,
     })
+
+    console.log(this.refs.form.input)
+
     var lineData = {
       userId: this.props.userId,
       text: this.state.text,
-      story: this.state.storyID
+      story: this.state.story
     }
     Help.sendLineData(lineData)
   }
@@ -46,9 +50,9 @@ class Line extends React.Component {
   render(){
     return (
       <div className="lineContainer">  
-        <form onSubmit={this.handleSubmit.bind(this)} className="lineForm">
+        <form ref="form" onSubmit={this.handleSubmit.bind(this)} className="lineForm">
         <h3 className="userLine">user</h3>
-          <input onChange={(e) => this.handleChange(e)} className="lineInput" type="text" placeholder="..." />
+          <input name="input" value={this.state.text} onChange={(e) => this.handleChange(e)} className="lineInput" type="text" placeholder="..." />
         </form>
       </div>  
     )

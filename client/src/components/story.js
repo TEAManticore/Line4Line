@@ -6,6 +6,7 @@ class Story extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      storyId: '',
       lines: [],
       title: '',
       users: [],
@@ -26,10 +27,11 @@ class Story extends React.Component {
   //retrieve story data from server via helpers
   //set state with this data
   componentDidMount () {
-    Help.getStoryData("")
+    Help.getStoryData(this.state.storyId)
     .then(stories => {
       console.log('Got stories: ', stories);
       this.setState({
+        storyId: stories._id,
         lines: stories.lines,
         title: stories.title,
         users: stories.users,
@@ -41,13 +43,12 @@ class Story extends React.Component {
     })   
   }
       
-
   render(){
     return (
       <div className="storyContainer" >  
         <h2 className="title">{ this.state.title }</h2>
         {this.state.lines.map((l, i) => 
-          <Line story={this.state.title} currentLine={this.state.currentLine} userid={l.userId} text={l.text} key={i} />
+          <Line story={this.state.storyId} userid={l.userId} text={l.text} key={i} />
         )}
       </div>  
     )
