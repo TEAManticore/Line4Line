@@ -6,6 +6,7 @@ require('./public/styles/line.css')
 require('./public/styles/story.css')
 require('./public/styles/lobby.css')
 require('./public/styles/openStory.css')
+require('./public/styles/signup.css')
 
 
 ReactDOM.render(

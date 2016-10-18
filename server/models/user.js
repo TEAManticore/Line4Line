@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 //hashing tool
 const bcrypt = require('bcrypt')
 //average number of rounds
-const saltRounds = 10
 const Schema = mongoose.Schema
+const saltRounds = 10
 //set up for a new user
 const userSchema = new Schema({
 //user name for a user, required
@@ -15,6 +15,11 @@ const userSchema = new Schema({
   //list of story ids the user has been involved with
   stories: [ String ]
 })
+userSchema.methods.comparePassword = function (guess, done) {
+  bcrypt.compare(guess, this.password, function (err, match) {
+    done(err, match);
+  });
+};
 
 userSchema.pre('save', function (next) {
   const user = this

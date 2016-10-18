@@ -11,7 +11,6 @@ module.exports = {
   post: (req, res) => {
     const username =  req.body.username
     const password = req.body.password
-
     User.findOne({username: username})
     .then((user) => {
       if(!user) {
@@ -62,4 +61,5 @@ module.exports = {
       return res.status(500).send('idk lol');
     });   
   }
+
 };

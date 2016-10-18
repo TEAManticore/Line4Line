@@ -1,31 +1,25 @@
 import React from 'react'
-import Request from 'request'
+import axios from 'axios'
 import OpenStory from './OpenStory'
-import dummyStories from '../dummyStories'
+
 
 class Lobby extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      stories: dummyStories
+      stories: []
     }
   }
 
-  // loadStoriesFromServer () {
-  //   Request.get('/stories').on('response', function(response) {
-  //     console.log('Got stories: ', response.statusCode)
-  //   })
-  //   .then((allStories) => {
-  //     const openStories = allStories.filter((story) => !story.complete)
-  //     this.setState({
-  //       stories: openStories
-  //     })
-  //   })
-  // }
-
-  // componentDidMount () {
-  //   this.loadStoriesFromServer().bind(this)
-  // }
+  componentDidMount () {
+    axios.get('http://127.0.0.1:8081/stories')
+    .then(stories => {
+      console.log('Got storeis: ', stories.data);
+      this.setState({
+        stories: stories.data
+      })
+    })   
+  }
 
   render () {
     return (
