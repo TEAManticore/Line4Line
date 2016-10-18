@@ -20,7 +20,7 @@ const SignUp = () => {
         <input className="signupInput" id="signupName" type="text" placeholder="pick a username..." />
         <input className="signupInput" id="signupPassword" type="password" placeholder="password" />
         <div className="signupButtonWrap">
-          <button className="standardButton blackButton">Sign-Up</button>
+          <input className="standardButton blackButton" type="submit" value="Sign-Up"/>
         </div>
       </form>
     </div>
