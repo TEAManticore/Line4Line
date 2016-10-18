@@ -1,4 +1,4 @@
-//var help = require('../helpers')
+var Help = require('../helpers')
 import React from 'react'
 
 class Line extends React.Component {
@@ -9,6 +9,7 @@ class Line extends React.Component {
       lock: true,
       text: this.props.text,
       userId: this.props.userId,
+      story: this.props.story
     }
 
     // 
@@ -26,11 +27,12 @@ class Line extends React.Component {
     this.setState({
       lock: true
     })
-    var storyLine = {
+    var lineData = {
       userId: this.props.userId,
-      text: this.state.text
+      text: this.state.text,
+      story: this.state.storyID
     }
-    //help.sendToServer(storyLine)
+    Help.sendLineData(lineData)
   }
 
   //observe change to input field as user types

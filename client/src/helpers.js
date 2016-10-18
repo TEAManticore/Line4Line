@@ -1,45 +1,44 @@
+import axios from 'axios'
+
 var helpers = {
-  getlines: function(cb){
-    cb([
-      {userId: 34, text: "once upon a time"},
-      {userId: 47, text: "there was a team"},
-      {userId: 23, text: "named the dodgers"},
-      {userId: 19, text: "who were on their way to play the cubs"}
-      ])
+  getLineData: function(cb){
+    axios.get(`http://127.0.0.1:8081/stories/${id}`)
   },
 
-  sendLines: function(storyLine){
-    console.log(storyLine)    
-    //send story line data to server
+  sendLineData: function(lineData){
+    axios.put(`http://127.0.0.1:8081/stories/${id}`, lineData)
+    .then(response => {
+      console.log(response)
+    })
   },
 
-  getStory: function(cb){
-    cb()
+  getStoryData: function(id){
+    return axios.get(`http://127.0.0.1:8081/stories/${id}`)
+    .then( res => 
+      // stories.data
+      helpers.fakeStory
+    )
   },
 
-  sendStory: function(story){
-    console.log(story)
+  sendStoryData: function(storyData){
+    axios.post(`http://127.0.0.1:8081/stories`, storyData)
+    .then(response => {
+      console.log(response)
+    })
   },
 
   fakeStory: {
-      //title of the story
-      title: 'Dodgers @ Cubbies',
-      //list of user ids involved in this story
-      users: [ '34', '47', '23', '19', '22', '46', '10' ],
-      //tells whether the story is complete or not
-      complete: false,
-      //the max length of the story
-      length: 7,
-      //max number of users in the story
-      numberUsers: 7,
-      //current line the story is on
-      currentLine: 5,
-      //list of lines in the story in order
-      lines: [
-        {userId: 34, text: "once upon a time"},
-        {userId: 47, text: "there was a team"},
-        {userId: 23, text: "named the dodgers"},
-        {userId: 19, text: "who were on their way to play the cubs"}
+      "title": "Cubs @ Dodgers",
+      "users": [ "1", "2", "3", "4", "5", "6", "7" ],
+      "complete": "false",
+      "length": "7",
+      "numberUsers": "7",
+      "currentLine": "5",
+      "lines": [
+        {"userId": "1", "text": "once upon a time"},
+        {"userId": "2", "text": "there was a team"},
+        {"userId": "3", "text": "named the dodgers"},
+        {"userId": "4", "text": "who were tied 1-1 vs. the cubs"}
       ]
     }
 }
