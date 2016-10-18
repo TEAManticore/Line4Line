@@ -5,9 +5,12 @@ const SignIn = () => {
 
   const sendUserData = () => {
     const formData = {}
-    formData.username = document.getElementById(signinName).value
-    formData.password = document.getElementById(signinPassword).value
-    axios.post('/sign-in', formData)
+    formData.username = document.getElementById('signinName').value
+    formData.password = document.getElementById('signinPassword').value
+    axios.post('http://127.0.0.1:8081/sign-in', formData)
+    .then(response => {
+      console.log(response);
+    })
   }
 
   return (
