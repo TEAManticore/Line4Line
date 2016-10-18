@@ -6,26 +6,36 @@ body {
   text-align: center;
 }
 
-.blackButton {
-  color: white;
-  background-color: black;
+.standardButton {
   font-size: 1.2em;
   font-weight: 800;
-  border: 1px solid rgba(0, 0, 0, 0);
   border-radius: 6px;
   text-align: center;
   padding: 14px 30px;
   width: 100%;
+  transition: ease-in-out 150ms;
+}
+
+.blackButton {
+  color: white;
+  background-color: black;
+  border: 3px solid white;
+}
+
+.blackButton:hover {
+  color: black;
+  background-color: white;
+  border: 3px solid black;
 }
 
 .whiteButton {
   color: black;
   background-color: white;
-  font-size: 1.2em;
-  font-weight: 800;
-  border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 6px;
-  text-align: center;
-  padding: 14px 30px;
-  width: 100%;
+  border: 3px solid rgba(0, 0, 0, 0);
+}
+
+.whiteButton:hover {
+  color: white;
+  background-color: black;
+  border: 3px solid white;
 }
