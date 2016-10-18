@@ -1,5 +1,5 @@
 import React from 'react'
-import Request from 'request'
+import axios from 'axios'
 
 const SignUp = () => {
 
@@ -7,7 +7,7 @@ const SignUp = () => {
     const formData = {}
     formData.username = document.getElementById(signupName).value
     formData.password = document.getElementById(signupPassword).value
-    Request.post('/sign-up').form(formData)
+    axios.post('/sign-up', formData)
   }
 
   return (
