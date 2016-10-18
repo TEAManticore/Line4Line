@@ -1,7 +1,7 @@
 import React from 'react'
-import request from 'request'
+import axios from 'axios'
 import OpenStory from './OpenStory'
-import dummyStories from '../dummyStories'
+
 
 class Lobby extends React.Component {
   constructor (props) {
@@ -11,35 +11,15 @@ class Lobby extends React.Component {
     }
   }
 
-  // loadStoriesFromServer () {
-  //   Request.get('http://localhost:8080/stories').on('response', function(response) {
-  //     console.log('Got stories: ', response.statusCode)
-  //   })
-  //   .then((allStories) => {
-  //     const openStories = allStories.filter((story) => !story.complete)
-  //     this.setState({
-  //       stories: openStories
-  //     })
-  //   })
-  // }
-
   componentDidMount () {
-    this.setState({
-      stories: [{title: 'Kanye, The Gay Fish',users: ['Stan', 'Kyle', 'Carman', 'Jimmy', 'Kanye'],complete: false,length: 10,numberUsers: 10,currentLine: 0,lines: []}]
-    })
-    // request.get('http://localhost:8080/stories')
-    //   .on('response', function(response) {
-    //   //console.log('Got stories: ', response);
-    //   this.setState({
-    //     stories: response.body
-    //   })
-    // })
-    // .bind(this)
+    axios.get('http://127.0.0.1:8081/stories')
+    .then(stories => {
+      console.log('Got storeis: ', stories.data);
+      this.setState({
+        stories: stories.data
+      })
+    })   
   }
-
-  // componentWillUnmount () {
-  //   this.serverRequest.abort()
-  // }
 
   render () {
     return (

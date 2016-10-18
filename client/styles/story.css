@@ -1,0 +1,19 @@
+.storyContainer{
+  display: table;
+  background-color: black;
+  border-radius: 20px;
+  border: solid white 3px;
+  margin: 70px 100px ;
+  box-shadow: 30px 15px rgba(133, 133, 133, 0.15);
+  height: auto;
+  width: 90%;
+  padding-bottom: 100px;
+}
+
+.title {
+  padding-top: 60px;
+  text-align: center;
+  font-family: helvetica;
+  border: 3px;
+  font-size: 50px;
+}
