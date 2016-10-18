@@ -10,10 +10,25 @@ module.exports = {
       res.json(stories)
     })
   },
+
+  joinStory: (req, res) => {
+    User.findOne({sessions: req.cookies.sessionId})
+      .then(user => {
+        Story.findOne({_id: req.params.id}).then(story => {
+          if(story.users.indexOf(user._id) !== -1) {
+            return res.status(404).send('Already joined')
+          } else {
+            story.update({ $push: {users: user._id}})
+            .then(story => {
+              console.log('updated')
+              res.send(story)
+            })
+          }
+        })
+      })
+  },
   createNewLine: (req, res) => {
-
     var lineContent = req.body.text
-
     Story.findOne({_id: req.params.id}) // Find the story that they are trying to add the line to
     .then((story) => {
       User.findOne({sessions: req.cookies.sessionId}) // Find current user
