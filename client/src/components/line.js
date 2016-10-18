@@ -13,14 +13,6 @@ class Line extends React.Component {
     }
   }
 
-  componentDidMount() {
-    if (this.currentLine > this.key){
-      this.setState({
-        lock: true
-      })
-    }
-  }
-
   //send text to server via helpers
   //lock in text value
   handleSubmit(e){
@@ -29,7 +21,6 @@ class Line extends React.Component {
       lock: true,
     })
 
-    console.log(this.refs.form.input)
 
     var lineData = {
       userId: this.props.userId,
@@ -50,10 +41,18 @@ class Line extends React.Component {
   render(){
     return (
       <div className="lineContainer">  
+      {!this.state.lock ?  
+        //while lock === false, render form  
         <form ref="form" onSubmit={this.handleSubmit.bind(this)} className="lineForm">
-        <h3 className="userLine">user</h3>
+          <h3 className="userLine">user</h3>
           <input name="input" value={this.state.text} onChange={(e) => this.handleChange(e)} className="lineInput" type="text" placeholder="..." />
-        </form>
+        </form> :
+        //while lock === true, render div
+        <div className="lineForm">
+          <div className="userLine">user</div>
+          <div className="lineInput">{this.state.text}</div>
+        </div>
+        }
       </div>  
     )
   }
