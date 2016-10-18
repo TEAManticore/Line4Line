@@ -31,7 +31,7 @@ body {
 .whiteButton {
   color: black;
   background-color: white;
-  border: 3px solid rgba(0, 0, 0, 0);
+  border: 3px solid black;
 }
 
 .whiteButton:hover {
