@@ -1,10 +1,14 @@
 import React from 'react'
 
-const LogoutButton = () => {
+const LogoutButton = (props) => {
   return (
-    <div>
-      Logout
-    </div>
+    <form onSubmit={props.logout}>
+      <input
+        className="standardButton whiteButton"
+        value="Logout"
+        type="submit"
+      />
+    </form>
   )
 }
 

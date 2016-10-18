@@ -19,15 +19,23 @@ class App extends React.Component {
       loggedIn: false
     }
     this.loginWithFacebook = this.loginWithFacebook.bind(this)
+    this.logout = this.logout.bind(this)
   }
 
   loginWithFacebook () {
     axios.get('http://127.0.0.1:8081/sign-in')
     .then(user => {
       this.setState = ({
-        currentUser: user.id,
-        loggedIn: false
+        currentUser: user.facebookId,
+        loggedIn: true
       })
+    })
+  }
+
+  logout () {
+    this.setState = ({
+      currentUser: null,
+      loggedIn: false
     })
   }
 
@@ -36,7 +44,7 @@ class App extends React.Component {
     if (!this.state.loggedIn) {
       loginButton = <LoginButton loginWithFacebook={this.loginWithFacebook} />
     } else {
-      loginButton = <LogoutButton />
+      loginButton = <LogoutButton logout={this.logout} />
     }
     return (
       <div>

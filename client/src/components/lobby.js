@@ -14,7 +14,7 @@ class Lobby extends React.Component {
   componentDidMount () {
     axios.get('http://127.0.0.1:8081/stories')
     .then(stories => {
-      console.log('Got storeis: ', stories.data);
+      console.log('Got stories: ', stories.data);
       this.setState({
         stories: stories.data
       })

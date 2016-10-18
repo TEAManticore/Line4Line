@@ -6,7 +6,7 @@ const LoginButton = (props) => {
   return (
     <form onSubmit={props.loginWithFacebook}>
       <input
-        className="standardButton whiteButton"
+        className="standardButton facebookButton"
         value="Login with Facebook"
         type="submit"
       />
