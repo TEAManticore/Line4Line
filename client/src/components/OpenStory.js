@@ -6,24 +6,21 @@ import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 're
 const OpenStory = (props) => {
 
   const storyURL = `/stories/${props.story._id}`
-  
-  // joinStory () {
-  //  //First we will need to get the current user's info to add him/her to the story in the DB
-  //   axios.get(storyURL)
-  //   .then( story => {
-  //     console.log(story)
-  //   })
-  // }
-  
+  const joinURL = `/join/${props.story._id}`
+
+  const joinStory = () => {
+    axios.put(joinURL)
+    .then( story => {
+      window.location = `/#${storyURL}`
+    })
+  }
 
   return (
     <div className="openStoryWrap">
       <div className="openStoryTitle">{props.story.title}</div>
       <div className="openStoryUsers">{props.story.users.length}/{props.story.numberUsers}</div>
       <div className='openStoryJoinWrap'>
-        <div className="standardButton blackButton">
-          <Link to={storyURL}>Join</Link>
-        </div>
+        <button onClick={joinStory} className="standardButton blackButton">Join</button>
       </div>
     </div>
   )

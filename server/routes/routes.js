@@ -18,7 +18,7 @@ router.post('/sign-up', users.post);
 
 router.post('/sign-in', users.verify);
 
-router.get('/home', (req,res) => {
+router.get('/', (req,res) => {
   res.sendFile(path.resolve(__dirname, '../../dist/index.html'))
 })
 

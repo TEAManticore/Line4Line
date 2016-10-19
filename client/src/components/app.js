@@ -51,7 +51,7 @@ class App extends React.Component {
         <h1>Line4Line</h1>
         {loginButton}
         <Router history={hashHistory}>
-          <Route path='/' component={Lobby}/>
+          <Route path='/' component={Lobby} />
           <Route path='/story' component={Story} />
         </Router>
       </div>

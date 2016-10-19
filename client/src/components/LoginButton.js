@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 
 const LoginButton = (props) => {
-
   return (
     <form onSubmit={props.loginWithFacebook}>
       <input
