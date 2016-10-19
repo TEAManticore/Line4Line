@@ -35,7 +35,6 @@ module.exports = {
 
     console.log(req.cookies)
     User.findOne({sessions: req.cookies.sessionId})
-    User.findOne({})
     .then((user)=>{
       new Story({title: title, length: length, users: [user._id], numberUsers: numberUsers }).save()
       .then((story) => {
