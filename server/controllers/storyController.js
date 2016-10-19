@@ -17,6 +17,8 @@ module.exports = {
         Story.findOne({_id: req.params.id}).then(story => {
           if(story.users.indexOf(user._id) !== -1) {
             return res.status(404).send('Already joined')
+          } else if(story.complete) {
+            return res.status(404).send('Sorry mate- this story is already complete')
           } else {
             story.update({ $push: {users: user._id}})
             .then(story => {
@@ -36,8 +38,15 @@ module.exports = {
         new Line({userId: user._id, story: story._id, text: lineContent}).save() // Create the new line and associate it with the user and story
         .then((line) => {
           story.update({ $push: { lines: line._id }})
-          .then((story) => {
-            res.send(line)
+          .then(()=> {
+            if(story.lines.length >= story.length) {
+              story.update({complete: true})
+              .then(()=>{
+                res.send(line)
+              })
+            } else {
+              res.send(line)
+            }
           })
         })
       })
