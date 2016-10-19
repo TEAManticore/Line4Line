@@ -33,26 +33,25 @@ passport.use(new FacebookStrategy({
       'id': profile.id
     };
 
-    User.findOne(query).then(user => {
-      if (user) {
-        console.log('User found');
-        done(null, user);
+  User.findOne(query).then(user => {
+    if (user) {
+      console.log('User found');
+      done(null, user);
 
-      } else {
-        console.log('User not found - adding to DB');
-        let newUser = {};
-        newUser.facebookId = profile.id;
-        newUser.name = profile.displayName;
-        newUser.proilePic = `http://graph.facebook.com/${profile.id}/picture?width=400&height=400`;
-        newUser.token = token;
-        new User(newUser).save();
-        done(null, user);
-      }
-    }).catch(err => {
-      throw err;
-    }) 
-  }
-))
+    } else {
+      console.log('User not found - adding to DB');
+      let newUser = {};
+      newUser.facebookId = profile.id;
+      newUser.name = profile.displayName;
+      newUser.proilePic = `http://graph.facebook.com/${profile.id}/picture?width=400&height=400`;
+      newUser.token = token;
+      new User(newUser).save();
+      done(null, user);
+    }
+  }).catch(err => {
+    throw err;
+  }) 
+}))
 
 // app level middleware
 app.use(morgan('dev'))
