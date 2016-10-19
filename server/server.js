@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const morgan = require('morgan')
-const cookieSesh = require('cookie-session')
+const session = require('express-session')
 const bodyParser = require('body-parser')
 const passport = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
@@ -15,16 +15,17 @@ passport.use(new FacebookStrategy({
   function(accessToken, refreshToken, profile, done) {    
     console.log(profile)
     const user = {id:profile.id, name: profile.givenName + profile.familyName, profilePic: profile.photos[0].value}
-    done(null, user)
+    return done(null, profile)
   }
 ))
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id)
+  done(null, user)
 })
 
-passport.deserializeUser(function (obj, done) {
-  done(null, obj)
+passport.deserializeUser(function (user, done) {
+  console.log(user)
+  done(null, user)
 })
 
 const router = require('./routes/routes')
@@ -42,7 +43,10 @@ app.use(express.static(path.resolve(__dirname, '../dist')))
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded( { extended: false } ))
 app.use(bodyParser.json())
-app.use(cookieSesh({secret: process.env.SECRET}))
+app.use(session({secret: process.env.SECRET,  
+  saveUninitialized: false,
+  resave: false,
+}))
 
 app.use(passport.initialize())
 app.use(passport.session())

@@ -20,17 +20,13 @@ router.post('/stories', stories.createStory)
 
 router.put('/stories/:id', stories.createNewLine)
 
-router.get('/sign-in', passport.authenticate('facebook'))
+router.get('/sign-in', passport.authenticate('facebook'));
 
-router.get('/auth/facebook/callback',
-  passport.authenticate('facebook'), 
-  (req,res) =>{
-    res.redirect('/')
-  });
-
-
-router.get('/home', (req,res) => {
-  res.sendFile(path.resolve(__dirname, '../../dist/index.html'))
-})
+// facebook will call this URL
+router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/');
+  }
+);
 
 module.exports = router;
