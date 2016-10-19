@@ -31,7 +31,8 @@ class Story extends React.Component {
         prevLine: 0,
         length: stories.length,
         complete: stories.complete,
-        numberUsers: stories.numberUsers
+        numberUsers: stories.numberUsers,
+        numLines: 1
       })  
     })
     .catch(err => console.log(err))   
@@ -39,9 +40,9 @@ class Story extends React.Component {
 
   //catch bubbled up events from line component
   manageLines(e){
-    
     this.setState({
-      prevLine: this.state.prevLine + 1
+      prevLine: this.state.prevLine + 1,
+      numLines: this.state.numLines + 1
     })
     if (this.state.prevLine === this.state.length){
       this.manageCompletion()
@@ -57,8 +58,8 @@ class Story extends React.Component {
       <div className="storyContainer" >  
         <h2 className="title">{ this.state.title }</h2>
         <div onSubmit={this.manageLines.bind(this)}>
-          {this.state.lines.map((l, i) => 
-            <Line story={this.state.storyId} prevLine={this.state.prevLine} userid={l.userId} text={l.text} key={i} position={i+1} />
+          {[...Array(this.state.numLines)].map((l, i) => 
+            <Line story={this.state.storyId} prevLine={this.state.prevLine} userid={this.state.users[i]} key={i} position={i+1} />
           )}
         </div>
       </div>  
