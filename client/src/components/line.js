@@ -38,6 +38,7 @@ class Line extends React.Component {
       text: this.state.text,
       story: this.state.story
     }
+    console.log(lineData)
     //send text to server via helpers
     Help.sendLineData(lineData)
 

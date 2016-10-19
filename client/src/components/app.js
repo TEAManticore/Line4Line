@@ -21,9 +21,7 @@ class App extends React.Component {
         <h1>Line4Line</h1>
         <Router history={hashHistory}>
           <Route path='/' component={Lobby} />
-          <Route path='/sign-up' component={SignUp} />
-          <Route path='/sign-in' component={SignIn} />
-          <Route path='/story' component={Story} /> 
+          <Route path='/stories/:id' component={Story} /> 
         </Router>
       </div>
     )

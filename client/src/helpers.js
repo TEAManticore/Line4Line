@@ -10,20 +10,14 @@ var helpers = {
     .then(response => {
       console.log(response)
     })
-    .catch(err => {
-      // helpers.fakeStory.lines.push(lineData);
-      // helpers.fakeStory.currentLine++
-      // console.log(helpers.fakeStory)
-    })
   },
 
   getStoryData: function(id){
     return axios.get(`http://127.0.0.1:8081/stories/${id}`)
     .then( res => {
-      // return res.data
-     return helpers.fakeStory
+      return res.data
     }).catch(err => {
-      return err
+      err
     })
   },
 

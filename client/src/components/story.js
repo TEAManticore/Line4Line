@@ -20,7 +20,9 @@ class Story extends React.Component {
   //retrieve story data from server via helpers
   //set state with this data
   componentDidMount () {
-    Help.getStoryData('')
+    var storyId = window.location.hash.split('').splice(10,24).join('')
+    console.log(storyId)
+    Help.getStoryData(storyId)
     .then(stories => {
       console.log('Got stories: ', stories);
       this.setState({
@@ -35,7 +37,6 @@ class Story extends React.Component {
         numLines: 1
       })  
     })
-    .catch(err => console.log(err))   
   }
 
   //catch bubbled up events from line component
@@ -59,7 +60,7 @@ class Story extends React.Component {
         <h2 className="title">{ this.state.title }</h2>
         <div onSubmit={this.manageLines.bind(this)}>
           {[...Array(this.state.numLines)].map((l, i) => 
-            <Line story={this.state.storyId} prevLine={this.state.prevLine} userid={this.state.users[i]} key={i} position={i+1} />
+            <Line story={this.state.storyId} prevLine={this.state.prevLine} text={this.state.lines[i]} userid={this.state.users[i]} key={i} position={i+1} />
           )}
         </div>
       </div>  
