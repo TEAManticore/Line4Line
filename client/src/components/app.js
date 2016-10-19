@@ -52,7 +52,7 @@ class App extends React.Component {
         {loginButton}
         <Router history={hashHistory}>
           <Route path='/' component={Lobby} />
-          <Route path='/story' component={Story} />
+          <Route path='/stories/:id' component={Story} />
         </Router>
       </div>
     )
