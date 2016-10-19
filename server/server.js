@@ -1,8 +1,31 @@
 const express = require('express')
 const path = require('path')
 const morgan = require('morgan')
-const cookie = require('cookie-parser')
+const cookieSesh = require('cookie-session')
 const bodyParser = require('body-parser')
+const passport = require('passport')
+const FacebookStrategy = require('passport-facebook').Strategy
+
+passport.use(new FacebookStrategy({
+    clientID: process.env.CLIENTID,
+    clientSecret: process.env.CLIENTSECRET,
+    callbackURL: "http://localhost:8081/auth/facebook/callback",
+    profileFields: ['id', 'emails', 'name', 'photos', 'hometown', 'profileUrl'],
+  },
+  function(accessToken, refreshToken, profile, done) {    
+    console.log(profile)
+    const user = {id:profile.id, name: profile.givenName + profile.familyName, profilePic: profile.photos[0].value}
+    done(null, user)
+  }
+))
+
+passport.serializeUser(function (user, done) {
+  done(null, user.id)
+})
+
+passport.deserializeUser(function (obj, done) {
+  done(null, obj)
+})
 
 const router = require('./routes/routes')
 const app = express()
@@ -19,7 +42,10 @@ app.use(express.static(path.resolve(__dirname, '../dist')))
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded( { extended: false } ))
 app.use(bodyParser.json())
-app.use(cookie())
+app.use(cookieSesh({secret: process.env.SECRET}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 app.use('/', router)
 
 const server = app.listen(port)
