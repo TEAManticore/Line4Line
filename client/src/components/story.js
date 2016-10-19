@@ -6,7 +6,7 @@ class Story extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      storyId: '',
+      storyId: window.location.hash.split('').splice(10,24).join(''),
       lines: [],
       title: '',
       users: [],
@@ -20,13 +20,10 @@ class Story extends React.Component {
   //retrieve story data from server via helpers
   //set state with this data
   componentDidMount () {
-    var storyId = window.location.hash.split('').splice(10,24).join('')
-    console.log(storyId)
-    Help.getStoryData(storyId)
+    Help.getStoryData(this.state.storyId)
     .then(stories => {
-      console.log('Got stories: ', stories);
+      console.log('Got stories: ', stories)
       this.setState({
-        storyId: stories._id,
         lines: stories.lines,
         title: stories.title,
         users: stories.users,
@@ -60,7 +57,7 @@ class Story extends React.Component {
         <h2 className="title">{ this.state.title }</h2>
         <div onSubmit={this.manageLines.bind(this)}>
           {[...Array(this.state.numLines)].map((l, i) => 
-            <Line story={this.state.storyId} prevLine={this.state.prevLine} text={this.state.lines[i]} userid={this.state.users[i]} key={i} position={i+1} />
+            <Line story={this.state.storyId} prevLine={this.state.prevLine} text={this.state.lines[i]} userId={this.state.users[i]} key={i} position={i+1} />
           )}
         </div>
       </div>  
