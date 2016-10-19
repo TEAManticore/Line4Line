@@ -2,11 +2,11 @@ import axios from 'axios'
 
 var helpers = {
   getLineData: function(cb){
-    axios.get(`http://127.0.0.1:8081/stories/${id}`)
+    return axios.get(`http://127.0.0.1:8081/stories/${id}`)
   },
 
   sendLineData: function(lineData){
-    axios.put(`http://127.0.0.1:8081/stories/${lineData.story}`, lineData)
+    return axios.put(`http://127.0.0.1:8081/stories/${lineData.story}`, lineData)
     .then(response => {
       console.log(response)
     })
@@ -19,14 +19,16 @@ var helpers = {
 
   getStoryData: function(id){
     return axios.get(`http://127.0.0.1:8081/stories/${id}`)
-    .then( res => 
-      // res.data
-      helpers.fakeStory
-    )
+    .then( res => {
+      // return res.data
+     return helpers.fakeStory
+    }).catch(err => {
+      return err
+    })
   },
 
   sendStoryData: function(storyData){
-    axios.post(`http://127.0.0.1:8081/stories`, storyData)
+    return axios.post(`http://127.0.0.1:8081/stories`, storyData)
     .then(response => {
       console.log(response)
     })

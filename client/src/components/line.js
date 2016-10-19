@@ -13,6 +13,19 @@ class Line extends React.Component {
     }
   }
 
+  // shouldBeHidden(){
+  //   console.log("position", this.props.position)
+  //   console.log("prev", this.props.prevLine)
+
+  //   if (!this.props.position >= this.props.prev){
+  //     this.setState({
+  //       hidden: true
+  //     })
+  //   }
+
+
+  // }
+
   handleSubmit(e){
     e.preventDefault()  
     //lock in text value
@@ -27,6 +40,8 @@ class Line extends React.Component {
     }
     //send text to server via helpers
     Help.sendLineData(lineData)
+
+    // this.shouldBeHidden()
   }
 
   //observe change to input field as user types
@@ -40,18 +55,26 @@ class Line extends React.Component {
   render(){
     return (
       <div className="lineContainer">   
-      {
-        !this.state.lock ?  
-        //if user hasn't submitted text, render form  
-        <form ref="form" onSubmit={this.handleSubmit.bind(this)} className="lineForm">
-          <h3 className="userLine">user</h3>
-          <input name="input" value={this.state.text} onChange={(e) => this.handleChange(e)} className="lineInput" type="text" placeholder="..." />
-        </form> :
-        //if user has already submitted text, render text as div
-        <div className="lineForm">
-          <div className="userLine">user</div>
-          <div className="lineInput">{this.state.text}</div>
-        </div>
+      {      
+        // this.state.hidden ? 
+        //   //if hidden is true (aka not prev line)
+        //   <div className="lineForm">
+        //     <div className="userLine">user</div>
+        //     <div className="lineInput">YOU CAN'T SEE MEEEEE</div>
+        //   </div> :
+        
+          !this.state.lock ?  
+            //if user hasn't submitted text, render form  
+            <form ref="form" onSubmit={this.handleSubmit.bind(this)} className="lineForm">
+              <h3 className="userLine">user</h3>
+              <input name="input" value={this.state.text} onChange={(e) => this.handleChange(e)} className="lineInput" type="text" placeholder="..." />
+            </form> :
+            //if user has already submitted text, render text as div
+            <div className="lineForm">
+              <div className="userLine">user</div>
+              <div className="lineInput">{this.state.text}</div>
+            </div>
+        
       }
       </div>  
     )

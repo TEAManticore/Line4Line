@@ -10,24 +10,17 @@ class Story extends React.Component {
       lines: [],
       title: '',
       users: [],
-      currentLine: 0,
+      prevLine: 0,
       length: 0,
       complete: false,
       numberUsers: 0
-      // lines: Help.fakeStory.lines,
-      // title: Help.fakeStory.title,
-      // users: Help.fakeStory.users,
-      // currentLine: Help.fakeStory.currentLine,
-      // length: Help.fakeStory.length,
-      // complete: Help.fakeStory.complete,
-      // numberUsers: Help.fakeStory.numberUsers
     }
   }
 
   //retrieve story data from server via helpers
   //set state with this data
   componentDidMount () {
-    Help.getStoryData(this.state.storyId)
+    Help.getStoryData('')
     .then(stories => {
       console.log('Got stories: ', stories);
       this.setState({
@@ -35,20 +28,22 @@ class Story extends React.Component {
         lines: stories.lines,
         title: stories.title,
         users: stories.users,
-        currentLine: stories.currentLine,
+        prevLine: 0,
         length: stories.length,
         complete: stories.complete,
         numberUsers: stories.numberUsers
-      })
-    })   
+      })  
+    })
+    .catch(err => console.log(err))   
   }
-
 
   //catch bubbled up events from line component
   manageLines(e){
-    this.state.currentLine++
-    console.log(this.state.currentLine)
-    if (this.state.currentLine === this.state.length){
+    
+    this.setState({
+      prevLine: this.state.prevLine + 1
+    })
+    if (this.state.prevLine === this.state.length){
       this.manageCompletion()
     }
   }
@@ -56,7 +51,6 @@ class Story extends React.Component {
   manageCompletion(){
     console.log("story complete!")
   }
-
       
   render(){
     return (
@@ -64,7 +58,7 @@ class Story extends React.Component {
         <h2 className="title">{ this.state.title }</h2>
         <div onSubmit={this.manageLines.bind(this)}>
           {this.state.lines.map((l, i) => 
-            <Line story={this.state.storyId} userid={l.userId} text={l.text} key={i} />
+            <Line story={this.state.storyId} prevLine={this.state.prevLine} userid={l.userId} text={l.text} key={i} position={i+1} />
           )}
         </div>
       </div>  
