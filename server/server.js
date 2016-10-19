@@ -3,7 +3,6 @@ const bodyParser       = require('body-parser')
 const passport         = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
 const session          = require('express-session')
-const cookieParser     = require('cookie-parser')
 const path             = require('path')
 const morgan           = require('morgan')
 const app              = express()
@@ -16,8 +15,8 @@ passport.serializeUser(function (user, done) {
   done(null, user)
 })
 
-passport.deserializeUser(function (id, done) {
-  done(null, user)
+passport.deserializeUser(function (obj, done) {
+  done(null, obj)
 })
 
 passport.use(new FacebookStrategy({
@@ -27,29 +26,29 @@ passport.use(new FacebookStrategy({
     passReqToCallback: true,
     profileFields: ['id', 'displayName', 'hometown', 'profileUrl'],
   },
-  function(req, accessToken, refreshToken, profile, done) {  
+  function(req, token, refreshToken, profile, done) {  
     console.log('refreshToken:',refreshToken)
     let query = {
-      'id': profile.id
+      'facebookId': profile.id
     };
 
   User.findOne(query).then(user => {
     if (user) {
-      console.log('User found');
-      done(null, user);
+      console.log('User found')
+      done(null, user)
 
     } else {
-      console.log('User not found - adding to DB');
-      let newUser = {};
-      newUser.facebookId = profile.id;
-      newUser.name = profile.displayName;
-      newUser.proilePic = `http://graph.facebook.com/${profile.id}/picture?width=400&height=400`;
-      newUser.token = token;
-      new User(newUser).save();
-      done(null, user);
+      console.log('User not found - adding to DB')
+      let newUser = {}
+      newUser.facebookId = profile.id
+      newUser.name = profile.displayName
+      newUser.profilePic = `http://graph.facebook.com/${profile.id}/picture?width=400&height=400`
+      newUser.token = token
+      new User(newUser).save()
+      done(null, user)
     }
   }).catch(err => {
-    throw err;
+    throw err
   }) 
 }))
 
@@ -62,7 +61,6 @@ app.use(function(req, res, next) {
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   next()
 })
-app.use(cookieParser(process.env.SECRET));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ 
   secret: process.env.SECRET, 
