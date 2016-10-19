@@ -1,32 +1,30 @@
 const stories = require('../controllers/storyController')
-const users = require('../controllers/userController')
-const router = require('express').Router();
+const router = require('express').Router()
 const path = require('path')
 const passport = require('passport')
 
-//Connect controller methods to their corresponding routes
-router.get('/stories',(req,res,next) => {
-  if(req.isAuthenticated){
-    console.log('IT FUCKING WORKS!~~~~~~~~~',req.user)
-    next()
-  }else{
-    res.redirect('/')
+function isAuthed(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
   }
-} ,stories.getAllStories)
+  res.send('error')
+}
 
-router.get('/stories/:id', stories.getOneStory)
+//Connect controller methods to their corresponding routes
+router.route('/stories').get(isAuthed,stories.getAllStories)
 
-router.post('/stories', stories.createStory)
+router.route('/stories/:id').get(stories.getOneStory)
 
-router.put('/stories/:id', stories.createNewLine)
+router.route('/stories').post(stories.createStory)
 
-router.get('/sign-in', passport.authenticate('facebook'));
+router.route('/stories/:id').put(stories.createNewLine)
+
+router.route('/auth/facebook').get(passport.authenticate('facebook'))
 
 // facebook will call this URL
-router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/' }),
-  function(req, res) {
-    res.redirect('/');
-  }
-);
+router.route('/auth/facebook/return').get(passport.authenticate('facebook', { 
+  failureRedirect: '/#/fail',
+  successRedirect: '/#/'
+  }))
+module.exports = router
 
-module.exports = router;

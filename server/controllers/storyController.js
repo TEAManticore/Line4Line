@@ -7,6 +7,7 @@ module.exports = {
   getAllStories: (req, res) => {
     Story.find({complete: false, $where: 'this.users.length < this.numberUsers'})
     .then((stories) => {
+      console.log(req.user)
       res.json(stories)
     })
   },
