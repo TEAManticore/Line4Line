@@ -6,6 +6,7 @@ class Story extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      //grab story id from url hash
       storyId: window.location.hash.split('').splice(10,24).join(''),
       lines: [],
       title: '',
@@ -17,12 +18,14 @@ class Story extends React.Component {
     }
   }
 
-  //retrieve story data from server via helpers
-  //set state with this data
+
+  //once the component renders
   componentDidMount () {
+    //retrieve story data from server via helpers
     Help.getStoryData(this.state.storyId)
     .then(stories => {
       console.log('Got stories: ', stories)
+      //set state with this data
       this.setState({
         lines: stories.lines,
         title: stories.title,
@@ -37,11 +40,13 @@ class Story extends React.Component {
   }
 
   //catch bubbled up events from line component
-  manageLines(e){
+  manageProgress(e){
+    //track story progress
     this.setState({
       prevLine: this.state.prevLine + 1,
       numLines: this.state.numLines + 1
     })
+    //if progress shows story is complete
     if (this.state.prevLine === this.state.length){
       this.manageCompletion()
     }
@@ -55,7 +60,7 @@ class Story extends React.Component {
     return (
       <div className="storyContainer" >  
         <h2 className="title">{ this.state.title }</h2>
-        <div onSubmit={this.manageLines.bind(this)}>
+        <div onSubmit={this.manageProgress.bind(this)}>
           {[...Array(this.state.numLines)].map((l, i) => 
             <Line story={this.state.storyId} prevLine={this.state.prevLine} text={this.state.lines[i]} userId={this.state.users[i]} key={i} position={i+1} />
           )}
