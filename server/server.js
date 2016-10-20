@@ -24,7 +24,8 @@ passport.use(new FacebookStrategy({
     clientID          : process.env.CLIENTID,
     clientSecret      : process.env.CLIENTSECRET,
     callbackURL       : "http://localhost:8081/auth/facebook/return",
-    passReqToCallback : true
+    passReqToCallback : true,
+
   },
   function(req, token, refreshToken, profile, done) {  
     console.log('refreshToken:',refreshToken)

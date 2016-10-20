@@ -1,45 +1,49 @@
+import axios from 'axios'
+
 var helpers = {
-  getlines: function(cb){
-    cb([
-      {userId: 34, text: "once upon a time"},
-      {userId: 47, text: "there was a team"},
-      {userId: 23, text: "named the dodgers"},
-      {userId: 19, text: "who were on their way to play the cubs"}
-      ])
+  getLineData: function(cb){
+    return axios.get(`http://127.0.0.1:8081/stories/${id}`)
   },
 
-  sendLines: function(storyLine){
-    console.log(storyLine)    
-    //send story line data to server
+  sendLineData: function(lineData){
+    return axios.put(`http://127.0.0.1:8081/stories/${lineData.story}`, lineData)
+    .then(response => {
+      console.log(response)
+    })
   },
 
-  getStory: function(cb){
-    cb()
+  getStoryData: function(id){
+    return axios.get(`http://127.0.0.1:8081/stories/${id}`)
+    .then( res => {
+      return res.data
+    }).catch(err => {
+      err
+    })
   },
 
-  sendStory: function(story){
-    console.log(story)
+  sendStoryData: function(storyData){
+    return axios.post(`http://127.0.0.1:8081/stories`, storyData)
+    .then(response => {
+      console.log(response)
+    })
   },
 
   fakeStory: {
-      //title of the story
-      title: 'Dodgers @ Cubbies',
-      //list of user ids involved in this story
-      users: [ '34', '47', '23', '19', '22', '46', '10' ],
-      //tells whether the story is complete or not
-      complete: false,
-      //the max length of the story
-      length: 7,
-      //max number of users in the story
-      numberUsers: 7,
-      //current line the story is on
-      currentLine: 5,
-      //list of lines in the story in order
-      lines: [
-        {userId: 34, text: "once upon a time"},
-        {userId: 47, text: "there was a team"},
-        {userId: 23, text: "named the dodgers"},
-        {userId: 19, text: "who were on their way to play the cubs"}
+      "_id": '580681e09dbd1a66fa848f36',
+      "title": "Cubs @ Dodgers",
+      "users": [ "1", "2", "3", "4", "5", "6", "7" ],
+      "complete": "false",
+      "length": 7,
+      "numberUsers": 7,
+      "currentLine": 0,
+      "lines": [
+        {"userId": "1", "text": ""},
+        {"userId": "2", "text": ""},
+        {"userId": "3", "text": ""},
+        {"userId": "4", "text": ""},
+        {"userId": "5", "text": ""},
+        {"userId": "6", "text": ""},
+        {"userId": "7", "text": ""},
       ]
     }
 }

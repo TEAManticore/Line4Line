@@ -24,20 +24,26 @@ router.route('/user').get(isAuthed,(req,res) => {
 
 router.route('/stories/:id').get(stories.getOneStory)
 
+router.route('/join/:id').put(stories.joinStory);
+
+router.route('/stories/:id').get(users.get);
+
 router.route('/stories').post(stories.createStory)
 
 router.route('/stories/:id').put(stories.createNewLine)
 
 router.route('/auth/facebook').get(passport.authenticate('facebook'))
 
+router.get('/', (req,res) => {
+  res.sendFile(path.resolve(__dirname, '../../dist/index.html'))
+})
+
 // facebook will call this URL
-router.route('/auth/facebook/return').get(passport.authenticate('facebook', { 
+router.route('/auth/facebook/return').get(passport.authenticate('facebook', {
   failureRedirect: '/#/fail',
   successRedirect: '/#/',
-  scope: ['user_friends']
 }))
 router.route('/').get((req,res) => {
   res.sendFile(path.resolve(__dirname, '../../dist/index.html'))
 })
 module.exports = router
-
