@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
 
 
@@ -9,7 +8,10 @@ const OpenStory = (props) => {
   const joinURL = `/join/${props.story._id}`
 
   const joinStory = () => {
-    axios.put(joinURL)
+    $.ajax({
+      url: joinURL,
+      type: 'PUT'
+    })
     .then( story => {
       window.location = `/#${storyURL}`
     })

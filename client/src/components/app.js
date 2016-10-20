@@ -28,7 +28,6 @@ class App extends React.Component {
         currentUser: user
       })
       console.log('currentUser: ', this.state.currentUser)
-      console.log('loggedIn: ', this.state.loggedIn)
     })
     .catch(err => {
       console.log('No user is signed in: ', err)
@@ -42,14 +41,12 @@ class App extends React.Component {
         currentUser: user
       })
       console.log('currentUser: ', this.state.currentUser)
-      console.log('loggedIn: ', this.state.loggedIn)
     })
   }
 
   logout () {
     this.setState = ({
-      currentUser: null,
-      loggedIn: false
+      currentUser: null
     })
   }
 
@@ -57,7 +54,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Line4Line</h1>
-        <Login loginWithFacebook={this.loginWithFacebook} logout={this.logout} loggedIn= {this.state.loggedIn} />
+        <Login loginWithFacebook={this.loginWithFacebook} logout={this.logout} />
         <CreateStory />
         <Router history={hashHistory}>
           <Route path='/' component={Lobby} />

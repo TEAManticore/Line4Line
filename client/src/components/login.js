@@ -4,7 +4,7 @@ import LogoutButton from './LogoutButton'
 
 const Login = (props) => {
   let loginButton
-    if (!props.loggedIn) {
+    if (!props.currentUser) {
       loginButton = <LoginButton loginWithFacebook={props.loginWithFacebook} />
     } else {
       loginButton = <LogoutButton logout={props.logout} />
