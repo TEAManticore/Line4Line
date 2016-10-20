@@ -16,7 +16,6 @@ class App extends React.Component {
     this.state = {
       currentUser: null
     }
-    this.loginWithFacebook = this.loginWithFacebook.bind(this)
     this.logout = this.logout.bind(this)
   }
 
@@ -34,19 +33,9 @@ class App extends React.Component {
     })
   }
 
-  loginWithFacebook () {
-    $.get('http://localhost:8081/auth/facebook')
-    .then(user => {
-      this.setState = ({
-        currentUser: user
-      })
-      console.log('currentUser: ', this.state.currentUser)
-    })
-  }
-
   logout () {
-    this.setState = ({
-      currentUser: null
+    this.setState({
+      currentUser: false
     })
   }
 
@@ -54,7 +43,10 @@ class App extends React.Component {
     return (
       <div>
         <h1>Line4Line</h1>
-        <Login loginWithFacebook={this.loginWithFacebook} logout={this.logout} />
+        <Login loginWithFacebook={this.loginWithFacebook}
+          logout={this.logout}
+          currentUser={this.state.currentUser}
+        />
         <CreateStory />
         <Router history={hashHistory}>
           <Route path='/' component={Lobby} />
