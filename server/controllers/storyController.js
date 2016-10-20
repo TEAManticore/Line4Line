@@ -11,8 +11,8 @@ module.exports = {
     })
   },
 
-  joinStory: (req, res) => {
-    User.findOne({sessions: req.cookies.sessionId})
+  joinStory: (req, res, next) => {
+    User.findOne({facebookId: req.user.facebookId})
       .then(user => {
         Story.findOne({_id: req.params.id}).then(story => {
           if(story.users.indexOf(user._id) !== -1) {
@@ -23,7 +23,7 @@ module.exports = {
             story.update({ $push: {users: user._id}})
             .then(story => {
               console.log('updated')
-              res.send(story)
+              next()
             })
           }
         })
