@@ -3,21 +3,19 @@ const router = require('express').Router()
 const path = require('path')
 const passport = require('passport')
 
-function isAuthed(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.send('error')
-}
+// function isAuthed(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     return next();
+//   }
+//   res.send('error')
+// }
 
 //Connect controller methods to their corresponding routes
-router.route('/stories').get(isAuthed,stories.getAllStories)
+router.route('/stories').get(stories.getAllStories)
 
 router.route('/stories/:id').get(stories.getOneStory)
 
 router.route('/join/:id').put(stories.joinStory);
-
-router.route('/stories/:id').get(users.get);
 
 router.route('/stories').post(stories.createStory)
 

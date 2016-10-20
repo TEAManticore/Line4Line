@@ -26,7 +26,7 @@ class App extends React.Component {
     axios.get('http://127.0.0.1:8081/user')
     .then(user => {
       this.setState = ({
-        currentUser: {name: user.name, profileImage: user.profileImage, facebookId: user.facebookId}
+        currentUser: {name: user.name, profileImage: user.profileImage, facebookId: user.facebookId},
         loggedIn: true
       })
     })
