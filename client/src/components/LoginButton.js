@@ -1,15 +1,12 @@
 import React from 'react'
-import axios from 'axios'
+import { Link } from 'react-router'
+
 
 const LoginButton = (props) => {
   return (
-    <form onSubmit={props.loginWithFacebook}>
-      <input
-        className="standardButton facebookButton"
-        value="Login with Facebook"
-        type="submit"
-      />
-    </form>
+    <a href="http://localhost:8081/auth/facebook" className="standardButton facebookButton">
+      Login with Facebook
+    </a>
   )
 }
 
