@@ -1,6 +1,5 @@
 const db = require('../models/config')
 const User = require('../models/user')
-const uuid = require('node-uuid')
 
 module.exports = {
 
