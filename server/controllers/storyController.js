@@ -7,6 +7,7 @@ module.exports = {
   getAllStories: (req, res) => {
     Story.find({complete: false, $where: 'this.users.length < this.numberUsers'})
     .then((stories) => {
+      console.log('~~~~~~~~~',req.user)
       res.json(stories)
     })
   },
@@ -57,8 +58,8 @@ module.exports = {
     const title = req.body.title
     const numberUsers = req.body.numberUsers
 
-    console.log(req.cookies)
-    User.findOne({sessions: req.cookies.sessionId})
+    console.log(req.user)
+    User.findOne(req.user.facebookId)
     .then((user)=>{
       new Story({title: title, length: length, users: [user._id], numberUsers: numberUsers }).save()
       .then((story) => {
@@ -70,8 +71,6 @@ module.exports = {
       console.log('Could not find user with that session')
       return res.status(404).send('User not found')
     })
-
-
 
   },
   getOneStory: (req, res) => {
