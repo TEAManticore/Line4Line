@@ -20,11 +20,11 @@ passport.deserializeUser(function (obj, done) {
 })
 
 passport.use(new FacebookStrategy({
-    clientID: process.env.CLIENTID,
-    clientSecret: process.env.CLIENTSECRET,
-    callbackURL: "http://localhost:8081/auth/facebook/return",
-    passReqToCallback: true,
-    profileFields: ['id', 'displayName', 'hometown', 'profileUrl'],
+    clientID          : process.env.CLIENTID,
+    clientSecret      : process.env.CLIENTSECRET,
+    callbackURL       : "http://localhost:8081/auth/facebook/return",
+    passReqToCallback : true,
+    profileFields     : ['id', 'displayName'],
   },
   function(req, token, refreshToken, profile, done) {  
     console.log('refreshToken:',refreshToken)
@@ -44,8 +44,12 @@ passport.use(new FacebookStrategy({
       newUser.name = profile.displayName
       newUser.profilePic = `http://graph.facebook.com/${profile.id}/picture?width=400&height=400`
       newUser.token = token
-      new User(newUser).save()
-      done(null, user)
+      new User(newUser).save((err,user) => {
+        if(err){
+          console.log(err)
+        }
+        done(null, user)
+      })
     }
   }).catch(err => {
     throw err
