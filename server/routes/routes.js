@@ -3,15 +3,24 @@ const router = require('express').Router()
 const path = require('path')
 const passport = require('passport')
 
-// function isAuthed(req, res, next) {
-//   if (req.isAuthenticated()) {
-//     return next();
-//   }
-//   res.send('error')
-// }
+isAuthed = (req,res,next) => {
+  if(req.isAuthenticated()){
+    next()
+  }
+  res.send(req.isAuthenticated())
+}
 
 //Connect controller methods to their corresponding routes
 router.route('/stories').get(stories.getAllStories)
+
+router.route('/user').get(isAuthed,(req,res) => {
+  const user = {
+    id: req.user.facebookId,
+    name: req.user.name,
+    profileImage: req.user.profilePic
+  }
+  res.send(user)
+})
 
 router.route('/stories/:id').get(stories.getOneStory)
 
@@ -30,6 +39,9 @@ router.get('/', (req,res) => {
 // facebook will call this URL
 router.route('/auth/facebook/return').get(passport.authenticate('facebook', {
   failureRedirect: '/#/fail',
-  successRedirect: '/#/'
+  successRedirect: '/#/',
 }))
+router.route('/').get((req,res) => {
+  res.sendFile(path.resolve(__dirname, '../../dist/index.html'))
+})
 module.exports = router
