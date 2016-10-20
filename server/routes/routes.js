@@ -26,8 +26,6 @@ router.route('/stories/:id').get(stories.getOneStory)
 
 router.route('/join/:id').put(stories.joinStory);
 
-router.route('/stories/:id').get(users.get);
-
 router.route('/stories').post(stories.createStory)
 
 router.route('/stories/:id').put(stories.createNewLine)

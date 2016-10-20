@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import OpenStory from './OpenStory'
 
 
@@ -12,11 +11,11 @@ class Lobby extends React.Component {
   }
 
   componentDidMount () {
-    axios.get('http://127.0.0.1:8081/stories')
+    $.get('http://localhost:8081/stories')
     .then(stories => {
-      console.log('Got storeis: ', stories.data);
+      console.log('Got stories: ', stories);
       this.setState({
-        stories: stories.data
+        stories: stories
       })
     })   
   }

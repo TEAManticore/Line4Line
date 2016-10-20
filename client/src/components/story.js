@@ -7,7 +7,7 @@ class Story extends React.Component {
     super(props)
     this.state = {
       //grab story id from url hash
-      storyId: window.location.hash.split('').splice(10,24).join(''),
+      storyId: this.props.params.id,
       lines: [],
       title: '',
       users: [],

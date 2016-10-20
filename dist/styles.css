@@ -6,51 +6,51 @@ body {
   text-align: center;
 }
 
-.blackButton {
-  color: white;
-  background-color: black;
+.standardButton {
   font-size: 1.2em;
   font-weight: 800;
-  border: 1px solid rgba(0, 0, 0, 0);
   border-radius: 6px;
   text-align: center;
   padding: 14px 30px;
   width: 100%;
+  transition: ease-in-out 150ms;
+}
+
+.blackButton {
+  color: white;
+  background-color: black;
+  border: 3px solid white;
+}
+
+.blackButton:hover {
+  color: black;
+  background-color: white;
+  border: 3px solid black;
 }
 
 .whiteButton {
   color: black;
   background-color: white;
-  font-size: 1.2em;
-  font-weight: 800;
-  border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 6px;
-  text-align: center;
-  padding: 14px 30px;
-  width: 100%;
+  border: 3px solid black;
 }
 
-.storyContainer{
-  display: table;
+.whiteButton:hover {
+  color: white;
   background-color: black;
-  border-radius: 20px;
-  border: solid white 3px;
-  margin: 70px 100px ;
-  box-shadow: 30px 15px rgba(133, 133, 133, 0.15);
-  height: auto;
-  width: 90%;
-  padding-bottom: 100px;
+  border: 3px solid white;
 }
 
-.title {
-  padding-top: 60px;
-  text-align: center;
-  font-family: helvetica;
-  border: 3px;
-  font-size: 50px;
+.facebookButton {
+  color: white;
+  background-color: #3b5998;
+  border: 3px solid white;
 }
 
-.lineContainer{
+.facebookButton:hover {
+  color: #3b5998;
+  background-color: white;
+  border: 3px solid #3b5998;
+}.lineContainer{
   display: table;
   margin: 0px auto;
   width: 70%;
@@ -93,13 +93,27 @@ body {
  .lineInput.focus {
   border-bottom: solid 5px white;
   outline: none;
+}.storyContainer{
+  display: table;
+  background-color: black;
+  border-radius: 20px;
+  border: solid white 3px;
+  margin: 70px 100px ;
+  box-shadow: 30px 15px rgba(133, 133, 133, 0.15);
+  height: auto;
+  width: 90%;
+  padding-bottom: 100px;
 }
 
-.lobby {
+.title {
+  padding-top: 60px;
+  text-align: center;
+  font-family: helvetica;
+  border: 3px;
+  font-size: 50px;
+}.lobby {
   text-align: left;
-}
-
-.openStoryWrap {
+}.openStoryWrap {
   background-color: white;
   color: black;
   border-radius: 5px;
@@ -125,7 +139,6 @@ body {
   width: 30%;
   padding-left: 5%;
 }
-
 .signupWrap {
   background-color: white;
   padding: 15px;
@@ -141,6 +154,22 @@ body {
 }
 
 .signupInput {
+  border: solid black 3px;
+  border-radius: 6px;
+  height: 50px;
+  width: 200px;
+  font-size: 1.3em;
+  margin: 0px 10px 0px 10px;
+}.createStoryWrap {
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.createTitleInput {
   border: solid black 3px;
   border-radius: 6px;
   height: 50px;
