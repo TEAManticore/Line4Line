@@ -5,8 +5,7 @@ import Lobby from './Lobby'
 import Story from './Story'
 // import SignUp from './SignUp'
 // import SignIn from './SignIn'
-import LoginButton from './LoginButton'
-import LogoutButton from './LogoutButton'
+import Login from './Login'
 import NavBar from './NavBar'
 import NavContainer from './NavContainer'
 
@@ -23,7 +22,7 @@ class App extends React.Component {
   }
 
   loginWithFacebook () {
-    axios.get('http://127.0.0.1:8081/sign-in')
+    axios.get('http://127.0.0.1:8081/auth/facebook')
     .then(user => {
       this.setState = ({
         currentUser: user.facebookId,
@@ -40,16 +39,10 @@ class App extends React.Component {
   }
 
   render () {
-    let loginButton
-    if (!this.state.loggedIn) {
-      loginButton = <LoginButton loginWithFacebook={this.loginWithFacebook} />
-    } else {
-      loginButton = <LogoutButton logout={this.logout} />
-    }
     return (
       <div>
         <h1>Line4Line</h1>
-        {loginButton}
+        <Login loginWithFacebook={this.loginWithFacebook} logout={this.logout} loggedIn= {this.state.loggedIn} />
         <Router history={hashHistory}>
           <Route path='/' component={Lobby} />
           <Route path='/stories/:id' component={Story} />
