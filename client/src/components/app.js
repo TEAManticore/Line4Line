@@ -15,7 +15,6 @@ class App extends React.Component {
     super(props)
     this.state = {
       currentUser: null,
-      loggedIn: false
     }
     this.loginWithFacebook = this.loginWithFacebook.bind(this)
     this.logout = this.logout.bind(this)
@@ -26,8 +25,7 @@ class App extends React.Component {
     .then(user => {
       console.log('user: ',user)
       this.setState({
-        currentUser: user,
-        loggedIn: true
+        currentUser: user
       })
       console.log('currentUser: ', this.state.currentUser)
       console.log('loggedIn: ', this.state.loggedIn)
@@ -41,8 +39,7 @@ class App extends React.Component {
     $.get('http://localhost:8081/auth/facebook')
     .then(user => {
       this.setState = ({
-        currentUser: {name: user.name, profileImage: user.profileImage, facebookId: user.facebookId},
-        loggedIn: true
+        currentUser: user
       })
       console.log('currentUser: ', this.state.currentUser)
       console.log('loggedIn: ', this.state.loggedIn)
