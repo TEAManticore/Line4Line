@@ -6,6 +6,7 @@ import Story from './Story'
 // import SignUp from './SignUp'
 // import SignIn from './SignIn'
 import Login from './Login'
+import CreateStory from './CreateStory'
 import NavBar from './NavBar'
 import NavContainer from './NavContainer'
 
@@ -19,6 +20,19 @@ class App extends React.Component {
     }
     this.loginWithFacebook = this.loginWithFacebook.bind(this)
     this.logout = this.logout.bind(this)
+  }
+
+  componentWillMount () {
+    axios.get('http://127.0.0.1:8081/user')
+    .then(user => {
+      this.setState = ({
+        currentUser: {name: user.name, profileImage: user.profileImage, facebookId: user.facebookId}
+        loggedIn: true
+      })
+    })
+    .catch(err => {
+      console.log('No user is signed in: ', err)
+    })
   }
 
   loginWithFacebook () {
@@ -43,6 +57,7 @@ class App extends React.Component {
       <div>
         <h1>Line4Line</h1>
         <Login loginWithFacebook={this.loginWithFacebook} logout={this.logout} loggedIn= {this.state.loggedIn} />
+        <CreateStory />
         <Router history={hashHistory}>
           <Route path='/' component={Lobby} />
           <Route path='/stories/:id' component={Story} />
