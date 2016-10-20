@@ -14,7 +14,7 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      currentUser: null,
+      currentUser: null
     }
     this.loginWithFacebook = this.loginWithFacebook.bind(this)
     this.logout = this.logout.bind(this)
