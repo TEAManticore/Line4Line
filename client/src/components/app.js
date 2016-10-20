@@ -1,6 +1,5 @@
 import React from 'react'
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
-import axios from 'axios'
 import Lobby from './Lobby'
 import Story from './Story'
 // import SignUp from './SignUp'
@@ -22,13 +21,16 @@ class App extends React.Component {
     this.logout = this.logout.bind(this)
   }
 
-  componentWillMount () {
-    axios.get('http://127.0.0.1:8081/user')
+  componentDidMount () {
+    $.get('http://localhost:8081/user')
     .then(user => {
-      this.setState = ({
-        currentUser: {name: user.name, profileImage: user.profileImage, facebookId: user.facebookId},
+      console.log('user: ',user)
+      this.setState({
+        currentUser: user,
         loggedIn: true
       })
+      console.log('currentUser: ', this.state.currentUser)
+      console.log('loggedIn: ', this.state.loggedIn)
     })
     .catch(err => {
       console.log('No user is signed in: ', err)
@@ -36,12 +38,14 @@ class App extends React.Component {
   }
 
   loginWithFacebook () {
-    axios.get('http://127.0.0.1:8081/auth/facebook')
+    $.get('http://localhost:8081/auth/facebook')
     .then(user => {
       this.setState = ({
-        currentUser: user.facebookId,
+        currentUser: {name: user.name, profileImage: user.profileImage, facebookId: user.facebookId},
         loggedIn: true
       })
+      console.log('currentUser: ', this.state.currentUser)
+      console.log('loggedIn: ', this.state.loggedIn)
     })
   }
 
