@@ -35,20 +35,18 @@ module.exports = {
     const numberUsers = req.body.numberUsers
 
     console.log(req.user)
-    // User.findOne(req.user.facebookId)
-    // .then((user)=>{
-    //   new Story({title: title, length: length, users: [user._id], numberUsers: numberUsers }).save()
-    //   .then((story) => {
-    //     console.log("Story saved: ", story)
-    //     res.redirect('/')
-    //   })
-    // })
-    // .catch((err) => {
-    //   console.log('Could not find user with that session')
-    //   return res.status(404).send('User not found')
-    // })
-    res.send('{}')
-
+    User.findOne(req.user.facebookId)
+    .then((user)=>{
+      new Story({title: title, length: length, users: [user._id], numberUsers: numberUsers }).save()
+      .then((story) => {
+        console.log("Story saved: ", story)
+        res.redirect('/')
+      })
+    })
+    .catch((err) => {
+      console.log('Could not find user with that session')
+      return res.status(404).send('User not found')
+    })
 
   },
   getOneStory: (req, res) => {

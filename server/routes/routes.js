@@ -25,6 +25,6 @@ router.route('/auth/facebook').get(passport.authenticate('facebook'))
 router.route('/auth/facebook/return').get(passport.authenticate('facebook', { 
   failureRedirect: '/#/fail',
   successRedirect: '/#/'
-  }))
+}))
 module.exports = router
 
