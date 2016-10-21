@@ -1,10 +1,18 @@
 import React from 'react'
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
+import Login from './Login'
 
-const NavBar = () => {
+const NavBar = (props) => {
   return (
-    <div>
-      <Link to='/'>Home</Link>
+    <div className="navbarWrap">
+      <div className="headerLogo">
+        <a href="http://localhost:8081/"><h1>Line4Line</h1></a>
+      </div>
+      <div className="headerLogButton">
+        <Login
+          logout={props.logout}
+          currentUser={props.currentUser}
+        />
+      </div>
     </div>
   )
 }

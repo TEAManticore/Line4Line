@@ -9,7 +9,7 @@ require('./public/styles/openStory.css')
 require('./public/styles/signup.css')
 require('./public/styles/createStory.css')
 require('./public/styles/accordion.css')
-
+require('./public/styles/navbar.css')
 
 ReactDOM.render(
   <App />,

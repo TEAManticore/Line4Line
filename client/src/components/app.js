@@ -4,6 +4,7 @@ import Lobby from './Lobby'
 import Story from './Story'
 import Login from './Login'
 import CreateStory from './CreateStory'
+import NavBar from './NavBar'
 
 
 class App extends React.Component {
@@ -38,8 +39,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <h1>Line4Line</h1>
-        <Login loginWithFacebook={this.loginWithFacebook}
+        <NavBar
           logout={this.logout}
           currentUser={this.state.currentUser}
         />
