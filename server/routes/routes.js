@@ -22,9 +22,7 @@ router.route('/user').get(isAuthed,(req,res) => {
   res.send(user)
 })
 
-router.route('/stories/:id').get(stories.getOneStory)
-
-router.route('/join/:id').put(stories.joinStory);
+router.route('/stories/:id').get(isAuthed, stories.joinStory, stories.getOneStory)
 
 router.route('/stories').post(isAuthed,stories.createStory)
 

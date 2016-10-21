@@ -5,14 +5,13 @@ import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 're
 const OpenStory = (props) => {
 
   const storyURL = `/stories/${props.story._id}`
-  const joinURL = `/join/${props.story._id}`
 
   const joinStory = () => {
     $.ajax({
-      url: joinURL,
-      type: 'PUT'
+      url: storyURL,
+      type: 'GET'
     })
-    .then( story => {
+    .then((res) => {
       window.location = `/#${storyURL}`
     })
   }

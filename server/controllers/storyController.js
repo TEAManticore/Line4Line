@@ -13,19 +13,19 @@ module.exports = {
   },
 
   joinStory: (req, res, next) => {
+    console.log(req.user)
     User.findOne({facebookId: req.user.facebookId})
     .then(user => {
-      console.log('user: ', user)
       Story.findOne({_id: req.params.id}).then(story => {
         if(story.users.indexOf(user._id) !== -1) {
-          return res.status(404).send('Already joined')
+          return next()
         } else if(story.complete) {
           return res.status(404).send('Sorry mate- this story is already complete')
         } else {
           story.update({ $push: {users: user._id}})
           .then(story => {
             console.log('updated')
-            next()
+            return next()
           })
         }
       })
