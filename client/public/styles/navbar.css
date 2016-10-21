@@ -1,0 +1,36 @@
+.navbarWrap {
+  color: white;
+  height: 80px;
+  border-bottom: 3px solid white;
+  margin-bottom: 15px;
+}
+
+.headerLogo {
+  display: inline-block;
+  width: 45%;
+  text-align: left;
+}
+
+.headerLogButton {
+  display: inline-block;
+  width: 45%;
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+a:link {
+  text-decoration: none;
+  color: white;
+}
+a:visited {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+a:active {
+  text-decoration: none;
+  color: white;
+}
