@@ -22,18 +22,18 @@ class Story extends React.Component {
   //once the component renders
   componentDidMount () {
     //retrieve story data from server via helpers
-    Help.getStoryData(this.state.storyId)
-    .then(stories => {
-      console.log('Got stories: ', stories)
+    $.get(`http://localhost:8081/stories/${this.state.storyId}`)
+    .then(story => {
+      console.log('Got stories: ', story)
       //set state with this data
       this.setState({
-        lines: stories.lines,
-        title: stories.title,
-        users: stories.users,
+        lines: story.lines,
+        title: story.title,
+        users: story.users,
         prevLine: 0,
-        length: stories.length,
-        complete: stories.complete,
-        numberUsers: stories.numberUsers,
+        length: story.length,
+        complete: story.complete,
+        numberUsers: story.numberUsers,
         numLines: 1
       })  
     })
