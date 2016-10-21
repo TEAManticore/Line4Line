@@ -30,6 +30,11 @@ router.route('/stories').post(stories.createStory)
 
 router.route('/stories/:id').put(stories.createNewLine)
 
+router.route('/logout').get((req,res) => {
+  req.logout()
+  res.redirect('/')
+})
+
 router.route('/auth/facebook').get(passport.authenticate('facebook'))
 
 router.get('/', (req,res) => {
