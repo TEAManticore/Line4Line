@@ -6,6 +6,7 @@ import Story from './Story'
 // import SignIn from './SignIn'
 import Login from './Login'
 import CreateStory from './CreateStory'
+import Accordion from './Accordion'
 import NavBar from './NavBar'
 import NavContainer from './NavContainer'
 
@@ -47,7 +48,7 @@ class App extends React.Component {
           logout={this.logout}
           currentUser={this.state.currentUser}
         />
-        <CreateStory />
+        <Accordion />
         <Router history={hashHistory}>
           <Route path='/' component={Lobby} />
           <Route path='/stories/:id' component={Story} />
