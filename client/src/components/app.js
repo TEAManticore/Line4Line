@@ -2,13 +2,8 @@ import React from 'react'
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
 import Lobby from './Lobby'
 import Story from './Story'
-// import SignUp from './SignUp'
-// import SignIn from './SignIn'
 import Login from './Login'
 import CreateStory from './CreateStory'
-import Accordion from './Accordion'
-import NavBar from './NavBar'
-import NavContainer from './NavContainer'
 
 
 class App extends React.Component {
@@ -48,7 +43,6 @@ class App extends React.Component {
           logout={this.logout}
           currentUser={this.state.currentUser}
         />
-        <Accordion />
         <Router history={hashHistory}>
           <Route path='/' component={Lobby} />
           <Route path='/stories/:id' component={Story} />

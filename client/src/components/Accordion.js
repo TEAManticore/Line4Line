@@ -23,7 +23,9 @@ class Accordion extends React.Component {
 
     return (
       <div>
-        <button className="standardButton blackButton" onClick={this.toggle}>{buttonText}</button>
+        <div className="toggleButtonWrap">
+          <button className="standardButton blackButton" onClick={this.toggle}>{buttonText}</button>
+        </div>
         <div className={sliderClass}>
           <CreateStory />
         </div>
