@@ -1,28 +1,21 @@
-import axios from 'axios'
-
 var helpers = {
   getLineData: function(cb){
-    return axios.get(`http://127.0.0.1:8081/stories/${id}`)
+    return $.get(`http://127.0.0.1:8081/stories/${id}`)
   },
 
   sendLineData: function(lineData){
-    return axios.put(`http://127.0.0.1:8081/stories/${lineData.story}`, lineData)
+    return $.put(`http://127.0.0.1:8081/stories/${lineData.story}`, lineData)
     .then(response => {
       console.log(response)
     })
   },
 
   getStoryData: function(id){
-    return axios.get(`http://127.0.0.1:8081/stories/${id}`)
-    .then( res => {
-      return res.data
-    }).catch(err => {
-      err
-    })
+    return $.get(`http://127.0.0.1:8081/stories/${id}`)
   },
 
   sendStoryData: function(storyData){
-    return axios.post(`http://127.0.0.1:8081/stories`, storyData)
+    return $.post(`http://127.0.0.1:8081/stories`, storyData)
     .then(response => {
       console.log(response)
     })

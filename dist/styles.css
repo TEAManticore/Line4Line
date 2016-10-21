@@ -218,3 +218,8 @@ body {
   max-height: 1000px;
   overflow: hidden;
 }
+
+.toggleButtonWrap {
+  width: 300px;
+  margin: auto;
+}
