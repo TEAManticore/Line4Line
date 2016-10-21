@@ -66,14 +66,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(morgan('dev'))
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8081')
-  //res.setHeader('Content-Type', 'application/JSON')
-  res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-  next()
-})
+// app.use(function(req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8081')
+//   //res.setHeader('Content-Type', 'application/JSON')
+//   res.setHeader('Access-Control-Allow-Credentials', true)
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+//   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+//   next()
+// })
 app.use('/', router)
 console.log(`Server is running on port: ${port}`)
 app.listen(port)

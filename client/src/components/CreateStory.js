@@ -1,16 +1,22 @@
 import React from 'react'
-import axios from 'axios'
 
 const CreateStory = (props) => {
 
-  const createStory = () => {
+  const createStory = (e) => {
+    e.preventDefault()
     const newStory = {}
     newStory.title = document.getElementById('createTitle').value
     newStory.numberUsers = document.getElementById('createNUsers').value
     newStory.storyLength = document.getElementById('createLength').value
-    axios.post('http://127.0.0.1:8081/stories', newStory)
-    .then( res => {
-      console.log(res)
+    $.ajax({
+      type: 'POST',
+      url:'http://localhost:8081/stories', 
+      data: newStory, 
+      dataType: 'json',
+      success: function(res){
+        console.log('~~~',res)
+        window.location = res.redirect
+      }
     })
   }
 

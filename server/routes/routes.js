@@ -5,9 +5,9 @@ const passport = require('passport')
 
 isAuthed = (req,res,next) => {
   if(req.isAuthenticated()){
-    next()
+    return next()
   }
-  res.send(req.isAuthenticated())
+  console.log(req.isAuthenticated())
 }
 
 //Connect controller methods to their corresponding routes
@@ -26,7 +26,7 @@ router.route('/stories/:id').get(stories.getOneStory)
 
 router.route('/join/:id').put(stories.joinStory);
 
-router.route('/stories').post(stories.createStory)
+router.route('/stories').post(isAuthed,stories.createStory)
 
 router.route('/stories/:id').put(stories.createNewLine)
 
