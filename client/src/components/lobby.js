@@ -1,5 +1,6 @@
 import React from 'react'
 import OpenStory from './OpenStory'
+import Accordion from './Accordion'
 
 
 class Lobby extends React.Component {
@@ -22,10 +23,13 @@ class Lobby extends React.Component {
 
   render () {
     return (
-      <div className='lobby'>
-        {this.state.stories.map((story, i) =>
-          <OpenStory story={story} key={i}/>
-        )}
+      <div>
+        <Accordion />
+        <div className='lobby'>
+          {this.state.stories.map((story, i) =>
+            <OpenStory story={story} key={i}/>
+          )}
+        </div>
       </div>
     )
   }
