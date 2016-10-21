@@ -1,15 +1,6 @@
 import React from 'react'
 import CreateStory from './CreateStory'
 
-const styles = {
-  active:  {
-    display: 'inherit'
-  },
-  inactive: {
-    display: 'none'
-  }
-}
-
 class Accordion extends React.Component {
   constructor(props) {
     super(props)
@@ -27,13 +18,13 @@ class Accordion extends React.Component {
 
   render () {
 
-    const stateStyle = this.state.active ? styles.active : styles.inactive
     const buttonText = this.state.active ? 'Hide' : 'Create a story'
+    const sliderClass = this.state.active ? "show" : "hide"
 
     return (
       <div>
-        <button onClick={this.toggle}>{buttonText}</button>
-        <div style={stateStyle}>
+        <button className="standardButton blackButton" onClick={this.toggle}>{buttonText}</button>
+        <div className={sliderClass}>
           <CreateStory />
         </div>
       </div>
