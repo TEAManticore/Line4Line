@@ -63,7 +63,7 @@ module.exports = {
     console.log(req.user)
     User.findOne({facebookId: req.user.facebookId})
     .then((user)=>{
-      new Story({title: title, length: length, users: [user.facebookId], numberUsers: numberUsers }).save()
+      new Story({title: title, length: length, users: [], numberUsers: numberUsers }).save()
       .then((story) => {
         console.log("Story saved: ", story)
         res.json({"redirect":`http://localhost:8081/#/stories/${story._id}`})
