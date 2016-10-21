@@ -18,10 +18,20 @@ const CreateStory = (props) => {
     <div className="createStoryWrap">
       <h3>Our story begins...</h3>
       <form onSubmit={createStory}>
-        <input className="createTitleInput" id="createTitle" type="text" placeholder="A super creative name..." />
-        <input className="createInput" id="createNUsers" type="number" placeholder="Number of users" />
-        <input className="createInput" id="createLength" type="number" placeholder="Length of story"/>
-        <input type="submit" value="Create" />
+        <div>  
+          <input className="createStoryInput createTitleInput" id="createTitle" type="text" placeholder="A super creative name..." />
+        </div>
+        <div>
+          <h3>Number of users</h3>
+          <input className="createStoryInput createNumberInput" id="createNUsers" type="number" min="1" max="10" placeholder="5"/>
+        </div>
+        <div>  
+          <h3>Story Length</h3>
+          <input className="createStoryInput createNumberInput" id="createLength" type="number" min="5" max="20" placeholder="10"/>
+        </div>
+        <div className='createButtonWrap'>
+          <input className="standardButton blackButton" type="submit" value="Create" />
+        </div>
       </form>
     </div>
   )

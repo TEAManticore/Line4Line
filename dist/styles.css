@@ -186,3 +186,7 @@ body {
   font-size: 1.3em;
   margin: 0px 10px 0px 10px;
 }
+
+.createStoryNumberWrap {
+  display: inline-block;
+}

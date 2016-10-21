@@ -2,25 +2,30 @@
   background-color: white;
   color: black;
   border-radius: 5px;
-  height: 400px;
+  height: auto;
   margin: 10px;
   padding: 10px;
 }
 
-.createTitleInput {
+.createStoryInput {
   border: solid black 3px;
   border-radius: 6px;
   height: 50px;
-  width: 400px;
   font-size: 1.3em;
-  margin: 0px 10px 0px 10px;
+  margin: auto;
+  display: block;
+  text-align: center;
 }
 
-.createInput {
-  border: solid black 3px;
-  border-radius: 6px;
-  height: 50px;
-  width: 100px;
-  font-size: 1.3em;
-  margin: 0px 10px 0px 10px;
+.createTitleInput {
+  width: 400px;
+}
+
+.createNumberInput {
+  width: 60px;
+}
+
+.createButtonWrap {
+  width: 30%;
+  margin: 10px auto;
 }
