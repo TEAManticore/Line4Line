@@ -8,8 +8,12 @@ const path             = require('path')
 const morgan           = require('morgan')
 const router           = require('./routes/routes')
 const User             = require('./models/user')
+const stories          = require('./controllers/storyController')
 
 const port             = process.env.PORT || 8081
+
+var http = require('http').Server(app)
+var io = require('./socket.js').listen(http)
 
 passport.serializeUser(function (user, done) {
   console.log(user)
@@ -56,6 +60,17 @@ passport.use(new FacebookStrategy({
     throw err
   }) 
 }))
+
+// app level middleware
+app.use(morgan('dev'))
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  //res.setHeader('Content-Type', 'application/JSON')
+  res.setHeader('Access-Control-Allow-Methods', "GET, POST, PUT, DELETE, OPTION")
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  next()
+})
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.resolve(__dirname, '../dist')))
 app.use(session({ 
@@ -63,18 +78,13 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(morgan('dev'))
-// app.use(function(req, res, next) {
-//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8081')
-//   //res.setHeader('Content-Type', 'application/JSON')
-//   res.setHeader('Access-Control-Allow-Credentials', true)
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-//   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-//   next()
-// })
-app.use('/', router)
-console.log(`Server is running on port: ${port}`)
-app.listen(port)
 
+app.use('/', router)
+
+const server = http.listen(port)
+
+console.log(`Server is running on port: ${port}`)
