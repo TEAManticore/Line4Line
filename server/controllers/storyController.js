@@ -82,7 +82,18 @@ module.exports = {
     console.log(req.params)
     Story.findOne({_id: req.params.id})
     .then((story) => {
+      if(story.lines.length){
+        Promise.all(story.lines.map(lineid => 
+          Line.findOne({_id: lineid})
+        ))
+        .then((data) => {
+          story.lines = data
+          console.log(story)
+          res.json(story)
+        })
+      } else {
         res.json(story)
+      }
     })
     .catch((err) => {
       console.log('Could not find story with that id')
