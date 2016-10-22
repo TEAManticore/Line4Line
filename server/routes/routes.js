@@ -1,4 +1,5 @@
 const stories = require('../controllers/storyController')
+const users = require('../controllers/userController')
 const router = require('express').Router()
 const path = require('path')
 const passport = require('passport')
@@ -13,14 +14,7 @@ isAuthed = (req,res,next) => {
 //Connect controller methods to their corresponding routes
 router.route('/stories').get(stories.getAllStories)
 
-router.route('/user').get(isAuthed,(req,res) => {
-  const user = {
-    id: req.user.facebookId,
-    name: req.user.name,
-    profileImage: req.user.profilePic
-  }
-  res.send(user)
-})
+router.route('/user').get(isAuthed, users.get)
 
 router.route('/stories/:id').get(isAuthed, stories.joinStory, stories.getOneStory)
 
