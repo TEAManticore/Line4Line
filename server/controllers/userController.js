@@ -3,9 +3,14 @@ const User = require('../models/user')
 
 module.exports = {
 
-  get: (req, res) => {
-  
-  },
+  get: (req,res) => {
+  const user = {
+    id: req.user.facebookId,
+    name: req.user.name,
+    profileImage: req.user.profilePic
+  }
+  res.send(user)
+},
 
   post: (req, res) => {
     const username =  req.body.username
