@@ -5,11 +5,10 @@ class Line extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      userId: this.props.userId,
-      text: this.props.text,
-      story: this.props.story,
-      hidden: false,
-      lock: false
+      userId: this.props.line.userId,
+      text: this.props.line.text,
+      story: this.props.line.story,
+      lock: this.props.lock
     }
   }
 

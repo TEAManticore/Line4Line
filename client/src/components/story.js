@@ -17,9 +17,9 @@ class Story extends React.Component {
       numberUsers: 0,
       currentLine: 0,
       lines: [],
-      prevLine: 0,
       currentUser: null,
-      currentUserIndex:0
+      currentUserIndex: 0,
+      prevLineIndex: 0
     }
   }
 
@@ -37,21 +37,23 @@ class Story extends React.Component {
         complete: story.complete,
         length: story.length,
         numberUsers: story.numberUsers,
-        currentLine: 0,
-        lines: story.lines,
-        prevLine: 0,
+        currentLine: story.currentLine,
+        lines: story.lines
       })
-      $.get('http://localhost:8081/user')
-      .then(user => {
-        console.log('user: ',user)
-        const currentUserIndex = this.state.users.indexOf(user.id)
-        this.setState({
-          currentUser: user,
-          currentUserIndex: currentUserIndex
-        })
-        console.log('currentUser: ', this.state.currentUser)
-        console.log('currentUserIndex: ', this.state.currentUserIndex)
-      }) 
+      // $.get('http://localhost:8081/user')
+      // .then(user => {
+      //   console.log('user: ',user)
+      //   const currentUserIndex = this.state.users.indexOf(user.facebookId)
+      //   const prevLineIndex = (currentUserIndex ? currentUserIndex - 1 : currentUserIndex)
+      //   this.setState({
+      //     currentUser: user,
+      //     currentUserIndex: currentUserIndex
+      //     prevLineIndex: prevLineIndex
+      //   })
+      //   console.log('currentUser: ', this.state.currentUser)
+      //   console.log('currentUserIndex: ', this.state.currentUserIndex)
+      //   console.log('prevLineIndex' , this.state.prevLineIndex)
+      // }) 
     })
     socket.emit('salty slug')
   }
@@ -70,17 +72,16 @@ class Story extends React.Component {
 
   // manageCompletion(){
   //   console.log("story complete!")
-  }
+  // }
       
   render(){
+    const prevLine = this.state.lines[this.state.prevLineIndex]
+    const currLine = {userId: this.state.currentUser, text: '', story: this.state.storyId}
     return (
       <div className="storyContainer" >  
         <h2 className="title">{ this.state.title }</h2>
-        <div onSubmit={this.manageProgress.bind(this)}>
-          {[...Array(this.state.numLines)].map((l, i) => 
-            <Line story={this.state.storyId} prevLine={this.state.prevLine} text={this.state.lines[i]} userId={this.state.users[i]} key={i} position={i+1} />
-          )}
-        </div>
+        <Line line={prevLine} lock={true} />
+        <Line line={currLine} lock={false} />
       </div>  
     )
   }
