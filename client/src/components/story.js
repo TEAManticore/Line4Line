@@ -1,20 +1,25 @@
 import React from 'react'
 import Line from './Line'
 import Help from '../helpers'
+import io from 'socket.io-client'
+
+const socket = io('http://localhost:8081')
 
 class Story extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      //grab story id from url hash
       storyId: this.props.params.id,
-      lines: [],
       title: '',
       users: [],
-      prevLine: 0,
-      length: 0,
       complete: false,
-      numberUsers: 0
+      length: 0,
+      numberUsers: 0,
+      currentLine: 0,
+      lines: [],
+      prevLine: 0,
+      currentUser: null,
+      currentUserIndex:0
     }
   }
 
@@ -27,33 +32,44 @@ class Story extends React.Component {
       console.log('Got stories: ', story)
       //set state with this data
       this.setState({
-        lines: story.lines,
         title: story.title,
         users: story.users,
-        prevLine: 0,
-        length: story.length,
         complete: story.complete,
+        length: story.length,
         numberUsers: story.numberUsers,
-        numLines: 1
-      })  
+        currentLine: 0,
+        lines: story.lines,
+        prevLine: 0,
+      })
+      $.get('http://localhost:8081/user')
+      .then(user => {
+        console.log('user: ',user)
+        const currentUserIndex = this.state.users.indexOf(user.id)
+        this.setState({
+          currentUser: user,
+          currentUserIndex: currentUserIndex
+        })
+        console.log('currentUser: ', this.state.currentUser)
+        console.log('currentUserIndex: ', this.state.currentUserIndex)
+      }) 
     })
+    socket.emit('salty slug')
   }
 
   //catch bubbled up events from line component
-  manageProgress(e){
-    //track story progress
-    this.setState({
-      prevLine: this.state.prevLine + 1,
-      numLines: this.state.numLines + 1
-    })
-    //if progress shows story is complete
-    if (this.state.prevLine === this.state.length){
-      this.manageCompletion()
-    }
-  }
+  // manageProgress(e){
+  //   //track story progress
+  //   this.setState({
+  //     prevLine: this.state.prevLine + 1
+  //   })
+  //   //if progress shows story is complete
+  //   if (this.state.prevLine === this.state.length){
+  //     this.manageCompletion()
+  //   }
+  // }
 
-  manageCompletion(){
-    console.log("story complete!")
+  // manageCompletion(){
+  //   console.log("story complete!")
   }
       
   render(){

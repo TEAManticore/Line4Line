@@ -9,6 +9,9 @@ module.exports.listen = function(http){
   //establish socket connection
   io.on('connection', function(client){
     console.log("socket running")
+    client.on('salty slug',function() {
+      console.log('Chuck is a salty slug')
+    })
     
   })
 }
