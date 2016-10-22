@@ -1,5 +1,5 @@
-var Help = require('../helpers')
 import React from 'react'
+import io from 'socket.io-client'
 
 const socket = io('http://localhost:8081')
 
@@ -53,6 +53,7 @@ class Line extends React.Component {
       text: e.target.value
     })
   }
+
 
   render(){
     return (

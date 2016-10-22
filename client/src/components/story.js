@@ -18,7 +18,6 @@ class Story extends React.Component {
       currentLine: 0,
       lines: [],
       currentUser: null,
-      currentUserIndex: 0,
       prevLineIndex: 0
     }
   }
@@ -42,16 +41,15 @@ class Story extends React.Component {
       })
       $.get('http://localhost:8081/user')
       .then(user => {
-        console.log('user: ',user)
-        const currentUserIndex = this.state.users.indexOf(user.id)
-        const prevLineIndex = (currentUserIndex ? currentUserIndex - 1 : currentUserIndex)
+        
+        
+        const prevLineIndex = (this.state.currentLine ? this.state.currentLine - 1 : this.state.currentLine)
+
         this.setState({
           currentUser: user,
-          currentUserIndex: currentUserIndex,
           prevLineIndex: prevLineIndex
         })
         console.log('currentUser: ', this.state.currentUser)
-        console.log('currentUserIndex: ', this.state.currentUserIndex)
         console.log('prevLineIndex' , this.state.prevLineIndex)
       }) 
     })
@@ -76,6 +74,7 @@ class Story extends React.Component {
       
   render(){
     if (this.state.currentUser) {
+      console.log('there is a user')
       const prevLine = this.state.lines[this.state.prevLineIndex]
       const currLine = {userId: this.state.currentUser.id, text: '', story: this.state.storyId}
       return (
@@ -86,7 +85,7 @@ class Story extends React.Component {
             this.state.prevLineIndex === 0 
 
             ?
-            
+
             <Line line={currLine} lock={false} />
             
             :
@@ -99,9 +98,10 @@ class Story extends React.Component {
         </div>  
       )
     } else {
+      console.log('there is no user')
       return (
         <div>
-          <h2>Loading</h2>
+          <h2>loading</h2>
         </div>
       )
     }
