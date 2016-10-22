@@ -31,24 +31,28 @@ module.exports = {
       })
     })
   },
-  createNewLine: (req, res) => {
-    var lineContent = req.body.text
-    Story.findOne({_id: req.params.id}) // Find the story that they are trying to add the line to
-    .then((story) => {
-      User.findOne({sessions: req.cookies.sessionId}) // Find current user
-      .then((user) => {
-        new Line({userId: user._id, story: story._id, text: lineContent}).save() // Create the new line and associate it with the user and story
-        .then((line) => {
-          story.update({ $push: { lines: line._id }})
-          .then(()=> {
-            if(story.lines.length >= story.length) {
-              story.update({complete: true})
-              .then(()=>{
-                res.send(line)
-              })
-            } else {
-              res.send(line)
-            }
+  createNewLine: (lineData) => {
+    return new Promise(function(resolve, reject) {
+      Story.findOne({_id: lineData.story}) // Find the story that they are trying to add the line to
+      .then((story) => {
+        User.findOne({facebookId: lineData.userId}) // Find current user
+        .then((user) => {
+          new Line({userId: user.facebookId, story: lineData.story, text: lineData.text}).save() // Create the new line and associate it with the user and story
+          .then((line) => {
+            story.update({ $push: { lines: line._id }})
+            .then(()=> {
+              if(story.lines.length >= story.length) {
+                story.update({complete: true})
+                .then(()=>{
+                  resolve(line)
+                })
+              } else {
+                resolve(line)
+              }
+            })
+          })
+          .catch((err) => {
+            console.log(err)
           })
         })
       })
@@ -83,7 +87,7 @@ module.exports = {
     Story.findOne({_id: req.params.id})
     .then((story) => {
       if(story.lines.length){
-        Promise.all(story.lines.map(lineid => 
+        Promise.all(story.lines.map(lineid =>
           Line.findOne({_id: lineid})
         ))
         .then((data) => {
