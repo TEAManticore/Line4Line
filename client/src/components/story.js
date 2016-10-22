@@ -56,25 +56,9 @@ class Story extends React.Component {
     socket.emit('salty slug')
   }
 
-  //catch bubbled up events from line component
-  // manageProgress(e){
-  //   //track story progress
-  //   this.setState({
-  //     prevLine: this.state.prevLine + 1
-  //   })
-  //   //if progress shows story is complete
-  //   if (this.state.prevLine === this.state.length){
-  //     this.manageCompletion()
-  //   }
-  // }
-
-  // manageCompletion(){
-  //   console.log("story complete!")
-  // }
       
   render(){
     if (this.state.currentUser) {
-      console.log('there is a user')
       const prevLine = this.state.lines[this.state.prevLineIndex]
       const currLine = {userId: this.state.currentUser.id, text: '', story: this.state.storyId}
       return (
@@ -89,19 +73,19 @@ class Story extends React.Component {
             <Line line={currLine} lock={false} />
             
             :
+
             <div>
-            <Line line={prevLine} lock={true} />
-            <Line line={currLine} lock={false} />
+              <Line line={prevLine} lock={true} />
+              <Line line={currLine} lock={false} />
             </div>
           }
 
         </div>  
       )
     } else {
-      console.log('there is no user')
       return (
         <div>
-          <h2>loading</h2>
+          <h2>Please Log In</h2>
         </div>
       )
     }
