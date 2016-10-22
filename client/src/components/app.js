@@ -19,11 +19,9 @@ class App extends React.Component {
   componentDidMount () {
     $.get('http://localhost:8081/user')
     .then(user => {
-      console.log('user: ',user)
       this.setState({
         currentUser: user
       })
-      console.log('currentUser: ', this.state.currentUser)
     })
     .catch(err => {
       console.log('No user is signed in: ', err)

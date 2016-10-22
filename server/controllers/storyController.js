@@ -39,7 +39,7 @@ module.exports = {
         .then((user) => {
           new Line({userId: user.facebookId, story: lineData.story, text: lineData.text}).save() // Create the new line and associate it with the user and story
           .then((line) => {
-            story.update({ $push: { lines: line._id }})
+            story.update({ $push: { lines: line._id }, $inc: { currentLine: 1 } })
             .then(()=> {
               if(story.lines.length >= story.length) {
                 story.update({complete: true})

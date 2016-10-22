@@ -6,7 +6,7 @@ const User = require('./user')
 const lineSchema = new Schema({
   //required attribute to assign the id to a user
   //a line must belong to only one user
-  userId: { type: Schema.ObjectId, ref: 'User', required: true },
+  userId: { type: String, required: true },
   //the text in the line
   text: { type: String, required: true },
   //refference to the story document
