@@ -29,7 +29,7 @@ class Story extends React.Component {
     //retrieve story data from server via helpers
     $.get(`http://localhost:8081/stories/${this.state.storyId}`)
     .then(story => {
-      console.log('Got stories: ', story)
+      console.log('Got story: ', story)
       //set state with this data
       this.setState({
         title: story.title,
@@ -40,20 +40,20 @@ class Story extends React.Component {
         currentLine: story.currentLine,
         lines: story.lines
       })
-      // $.get('http://localhost:8081/user')
-      // .then(user => {
-      //   console.log('user: ',user)
-      //   const currentUserIndex = this.state.users.indexOf(user.facebookId)
-      //   const prevLineIndex = (currentUserIndex ? currentUserIndex - 1 : currentUserIndex)
-      //   this.setState({
-      //     currentUser: user,
-      //     currentUserIndex: currentUserIndex
-      //     prevLineIndex: prevLineIndex
-      //   })
-      //   console.log('currentUser: ', this.state.currentUser)
-      //   console.log('currentUserIndex: ', this.state.currentUserIndex)
-      //   console.log('prevLineIndex' , this.state.prevLineIndex)
-      // }) 
+      $.get('http://localhost:8081/user')
+      .then(user => {
+        console.log('user: ',user)
+        const currentUserIndex = this.state.users.indexOf(user.id)
+        const prevLineIndex = (currentUserIndex ? currentUserIndex - 1 : currentUserIndex)
+        this.setState({
+          currentUser: user,
+          currentUserIndex: currentUserIndex,
+          prevLineIndex: prevLineIndex
+        })
+        console.log('currentUser: ', this.state.currentUser)
+        console.log('currentUserIndex: ', this.state.currentUserIndex)
+        console.log('prevLineIndex' , this.state.prevLineIndex)
+      }) 
     })
     socket.emit('salty slug')
   }
@@ -75,15 +75,37 @@ class Story extends React.Component {
   // }
       
   render(){
-    const prevLine = this.state.lines[this.state.prevLineIndex]
-    const currLine = {userId: this.state.currentUser, text: '', story: this.state.storyId}
-    return (
-      <div className="storyContainer" >  
-        <h2 className="title">{ this.state.title }</h2>
-        <Line line={prevLine} lock={true} />
-        <Line line={currLine} lock={false} />
-      </div>  
-    )
+    if (this.state.currentUser) {
+      const prevLine = this.state.lines[this.state.prevLineIndex]
+      const currLine = {userId: this.state.currentUser.id, text: '', story: this.state.storyId}
+      return (
+        <div className="storyContainer" >  
+          <h2 className="title">{ this.state.title }</h2>
+          
+          {
+            this.state.prevLineIndex === 0 
+
+            ?
+            
+            <Line line={currLine} lock={false} />
+            
+            :
+            <div>
+            <Line line={prevLine} lock={true} />
+            <Line line={currLine} lock={false} />
+            </div>
+          }
+
+        </div>  
+      )
+    } else {
+      return (
+        <div>
+          <h2>Loading</h2>
+        </div>
+      )
+    }
+
   }
 
 }
