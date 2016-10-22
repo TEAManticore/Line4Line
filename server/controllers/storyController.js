@@ -17,12 +17,12 @@ module.exports = {
     User.findOne({facebookId: req.user.facebookId})
     .then(user => {
       Story.findOne({_id: req.params.id}).then(story => {
-        if(story.users.indexOf(user._id) !== -1) {
+        if(story.users.indexOf(user.facebookId) !== -1) {
           return next()
         } else if(story.complete) {
           return res.status(404).send('Sorry mate- this story is already complete')
         } else {
-          story.update({ $push: {users: user._id}})
+          story.update({ $push: {users: user.facebookId}})
           .then(story => {
             console.log('updated')
             return next()
