@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      currentUser: null
+      currentUser: false
     }
     this.logout = this.logout.bind(this)
   }
@@ -41,10 +41,15 @@ class App extends React.Component {
           logout={this.logout}
           currentUser={this.state.currentUser}
         />
+        {
+        this.state.currentUser ? 
         <Router history={hashHistory}>
-          <Route path='/' component={Lobby} />
+          <Route path='/' user={this.state.currentUser} component={Lobby} />
           <Route path='/stories/:id' component={Story} />
-        </Router>
+        </Router> 
+        : 
+        <div>Please Login</div>
+        }
       </div>
     )
   }
