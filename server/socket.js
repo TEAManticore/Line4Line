@@ -20,6 +20,7 @@ module.exports.listen = function(http){
     })
 
     client.on('sendingLine', function(lineData) {
+      console.log('bang')
       stories.createNewLine(lineData).then(line => {
         io.emit('lineSaved', line)
       })
