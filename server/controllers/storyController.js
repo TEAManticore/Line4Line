@@ -87,11 +87,24 @@ module.exports = {
   },
   getOneStorySocketStyle: (id) => {
     return new Promise((resolve, reject) => {
-      Story.findOne({_id: id})
+      console.log(req.params)
+      Story.findOne({_id: req.params.id})
       .then((story) => {
-          resolve(story)
+        if(story.lines.length){
+          Promise.all(story.lines.map(lineid =>
+            Line.findOne({_id: lineid})
+          ))
+          .then((data) => {
+            story.lines = data
+            console.log(story)
+            resolve(story)
+          })
+        } else {
+          console.log('bungalo res bowls')
+        }
       })
       .catch((err) => {
+        console.log('Could not find story with that id')
         return res.status(404).send('Story not found')
       })
     })
