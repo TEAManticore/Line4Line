@@ -85,6 +85,17 @@ module.exports = {
     })
 
   },
+  getOneStorySocketStyle: (id) => {
+    return new Promise((resolve, reject) => {
+      Story.findOne({_id: id})
+      .then((story) => {
+          resolve(story)
+      })
+      .catch((err) => {
+        return res.status(404).send('Story not found')
+      })
+    })
+  },
   getOneStory: (req, res) => {
     console.log(req.params)
     Story.findOne({_id: req.params.id})

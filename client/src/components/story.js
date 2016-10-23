@@ -58,27 +58,27 @@ class Story extends React.Component {
     //Do you know the salty slug?
     socket.emit('salty slug')
 
-    socket.on('updateStory', this.changeLineState)
+    socket.on('updateStory', this.changeState.bind(this))
 
   }
 
-  changeLineState(line){
-    var updatedLines = this.state.lines
-    updatedLines.push(line)
+  changeState(story){
+    console.log('STORY: ', story)
     this.setState({
-      lines: updatedLines
+      lines: story.lines,
+      currentLine: story.currentLine,
+      users: story.users
     })
-    console.log('ITS A TEXAS THANG', this.state)
   }
 
   //The code below is not DRY but it works. I am ashamed of myself for writing it.
   render () {
     //The previous line
-    const prevLine = this.state.lines[this.state.prevLineIndex]
+    var prevLine = this.state.lines[this.state.prevLineIndex]
     //Creats an incomplete line with the current user's ID and the story's ID
-    const currIncomplete = {userId: this.state.currentUser.id, text: '', story: this.state.storyId}
+    var currIncomplete = {userId: this.state.currentUser.id, text: '', story: this.state.storyId}
     //A complete line that the current user wrote.
-    const currComplete = this.state.lines[this.state.currentUserIndex]
+    var currComplete = this.state.lines[this.state.currentUserIndex]
 
     if (this.state.currentLine === 0 && this.state.currentUserIndex === 0) {
     //If the current user is the creator of the story and has not written a line yet
