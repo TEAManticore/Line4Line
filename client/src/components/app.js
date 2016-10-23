@@ -13,10 +13,13 @@ class App extends React.Component {
     this.state = {
       currentUser: false
     }
+    //Bind this to logout so it can be passed down through multiple components
     this.logout = this.logout.bind(this)
   }
 
   componentDidMount () {
+    //Make and initial get request to sign the user in with Facebook
+    //This current user will be used in many places throughout the app.
     $.get('http://localhost:8081/user')
     .then(user => {
       this.setState({
@@ -42,6 +45,8 @@ class App extends React.Component {
           currentUser={this.state.currentUser}
         />
         {
+        //if there is a current user, render the lobby/story with react router
+        //else tell the user to login
         this.state.currentUser ? 
         <Router history={hashHistory}>
           <Route path='/' component={Lobby} />
