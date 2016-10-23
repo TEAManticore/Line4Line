@@ -85,7 +85,7 @@ class Story extends React.Component {
           <h2 className="title">{ this.state.title }</h2>
 
           {this.state.lines.map((line, i) =>
-            <Line line={line} />
+            <Line line={line} lock={true}/>
           )}
 
         </div>
