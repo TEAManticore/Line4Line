@@ -2,7 +2,6 @@ import React from 'react'
 import Line from './Line'
 import Help from '../helpers'
 import io from 'socket.io-client'
-var storyThis;
 
 const socket = io('http://localhost:8081')
 
@@ -22,7 +21,6 @@ class Story extends React.Component {
       currentUserIndex: 0,
       prevLineIndex: 0
     }
-    storyThis = this
   }
 
   //once the component renders
