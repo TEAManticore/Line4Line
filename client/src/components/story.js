@@ -54,11 +54,13 @@ class Story extends React.Component {
     socket.emit('salty slug')
   }
 
-      
+  //The code below is not DRY but it works. I am ashamed of myself for writing it.
   render () {
-    
+    //The previous line
     const prevLine = this.state.lines[this.state.prevLineIndex]
-    const currLine = {userId: this.state.currentUser.id, text: '', story: this.state.storyId}
+    //Creats an incomplete line with the current user's ID and the story's ID
+    const currIncomplete = {userId: this.state.currentUser.id, text: '', story: this.state.storyId}
+    //A complete line that the current user wrote.
     const currComplete = this.state.lines[this.state.currentUserIndex]
    
     if (this.state.currentLine === 0 && this.state.currentUserIndex === 0) {
@@ -67,7 +69,7 @@ class Story extends React.Component {
         <div className="storyContainer" >  
           <h2 className="title">{ this.state.title }</h2>
           
-          <Line line={currLine} lock={false} />
+          <Line line={currIncomplete} lock={false} />
 
         </div>  
       )
@@ -114,7 +116,7 @@ class Story extends React.Component {
           
           <div>
             <Line line={prevLine} lock={true} />
-            <Line line={currLine} lock={false} />
+            <Line line={currIncomplete} lock={false} />
           </div>
 
         </div>  
