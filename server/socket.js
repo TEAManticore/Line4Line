@@ -10,11 +10,17 @@ module.exports.listen = function(http){
     client.on('salty slug',function() {
       console.log('~~~~~~~~~~~~~Chuck is a salty slug~~~~~~~~~~~')
     })
-    
+
+    client.on('updateStoryWithNewLine', function(line) {
+      console.log('new line on server side')
+      stories.getOneStorySocketStyle(line.story).then(story => {
+        console.log('come on dude man bro dog: ', story)
+        io.emit('updateStory', story)
+      })
+    })
 
     client.on('sendingLine', function(lineData) {
       stories.createNewLine(lineData).then(line => {
-        console.log('this fucking line: ',line)
         io.emit('lineSaved', line)
       })
     })

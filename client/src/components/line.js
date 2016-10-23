@@ -1,6 +1,5 @@
 import React from 'react'
 import io from 'socket.io-client'
-
 const socket = io('http://localhost:8081')
 
 class Line extends React.Component {
@@ -12,12 +11,24 @@ class Line extends React.Component {
       story: props.line.story,
       lock: props.lock
     }
+
+    var lineThis = this;
+    socket.on('lineSaved', function(line) {
+      console.log('imma little bitch: ', line)
+      lineThis.setState({
+        userId: line.userId,
+        text: line.text,
+        story: line.story
+      })
+      socket.emit('updateStoryWithNewLine', line)
+    })
   }
 
 
 
+
   handleSubmit(e){
-    e.preventDefault()  
+    e.preventDefault()
     //lock in text value
     this.setState({
       lock: true,
@@ -30,9 +41,7 @@ class Line extends React.Component {
     }
     console.log(lineData)
     //send text to server via helpers
-    
     socket.emit('sendingLine', lineData)
-    // this.shouldBeHidden()
   }
 
   // observe change to input field as user types
@@ -41,16 +50,16 @@ class Line extends React.Component {
     this.setState({
       text: e.target.value
     })
+
   }
 
 
   render(){
     return (
-      <div className="lineContainer">   
-      {      
-        
-        !this.state.lock ?  
-          //if user hasn't submitted text, render form  
+      <div className="lineContainer">
+      {
+        !this.state.lock ?
+          //if user hasn't submitted text, render form
           <form ref="form" onSubmit={this.handleSubmit.bind(this)} className="lineForm">
             <h3 className="userLine">user</h3>
             <input name="input" value={this.state.text} onChange={(e) => this.handleChange(e)} className="lineInput" type="text" placeholder="..." />
@@ -60,13 +69,11 @@ class Line extends React.Component {
             <div className="userLine">user</div>
             <div className="lineInput">{this.state.text}</div>
           </div>
-        
+
       }
-      </div>  
+      </div>
     )
   }
 }
 
 export default Line
-
-

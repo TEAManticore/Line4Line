@@ -1,3 +1,4 @@
+"use strict"
 const express          = require('express')
 const bodyParser       = require('body-parser')
 const app              = express()
@@ -31,7 +32,7 @@ passport.use(new FacebookStrategy({
     passReqToCallback : true,
 
   },
-  function(req, token, refreshToken, profile, done) {  
+  function(req, token, refreshToken, profile, done) {
     console.log('refreshToken:',refreshToken)
     let query = {
       'facebookId': profile.id
@@ -58,7 +59,7 @@ passport.use(new FacebookStrategy({
     }
   }).catch(err => {
     throw err
-  }) 
+  })
 }))
 
 // app level middleware
@@ -73,8 +74,8 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.resolve(__dirname, '../dist')))
-app.use(session({ 
-  secret: process.env.SECRET, 
+app.use(session({
+  secret: process.env.SECRET,
   resave: true,
   saveUninitialized: true
 }));
