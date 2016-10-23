@@ -14,6 +14,7 @@ module.exports.listen = function(http){
     client.on('updateStoryWithNewLine', function(line) {
       console.log('new line on server side')
       stories.getOneStorySocketStyle(line.story).then(story => {
+        console.log('come on dude man bro dog: ', story)
         io.emit('updateStory', story)
       })
     })
