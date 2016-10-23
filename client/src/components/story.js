@@ -78,7 +78,20 @@ class Story extends React.Component {
     //A complete line that the current user wrote.
     var currComplete = this.state.lines[this.state.currentUserIndex]
 
-    if (this.state.currentLine === 0 && this.state.currentUserIndex === 0) {
+    if (this.state.lines.length === this.state.users.length) {
+    //If the story is complete
+    //http://localhost:8081/#/stories/580d1dc028d1c321909d6b33?_k=oxgpcp
+      return (
+        <div className="storyContainer" >
+          <h2 className="title">{ this.state.title }</h2>
+
+          {this.state.lines.map((line, i) =>
+            <Line line={line} />
+          )}
+
+        </div>
+      )
+    } else if (this.state.currentLine === 0 && this.state.currentUserIndex === 0) {
     //If the current user is the creator of the story and has not written a line yet
       return (
         <div className="storyContainer" >
@@ -98,7 +111,7 @@ class Story extends React.Component {
 
         </div>
       )
-    } else {
+    } else if (this.state.currentLine === this.state.currentUserIndex) {
     //If the current user is not the creator and it is their turn to write
        return (
         <div className="storyContainer" >
