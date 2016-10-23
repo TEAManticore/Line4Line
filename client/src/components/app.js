@@ -20,7 +20,7 @@ class App extends React.Component {
   componentDidMount () {
     //Make and initial get request to sign the user in with Facebook
     //This current user will be used in many places throughout the app.
-    $.get('http://localhost:8081/user')
+    $.get('/user')
     .then(user => {
       this.setState({
         currentUser: user

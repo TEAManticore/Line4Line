@@ -3,7 +3,7 @@ import Line from './Line'
 import Help from '../helpers'
 import io from 'socket.io-client'
 
-const socket = io('http://localhost:8081')
+const socket = io()
 
 class Story extends React.Component {
   constructor(props){
@@ -26,7 +26,7 @@ class Story extends React.Component {
   //once the component renders
   componentDidMount () {
     //retrieve story data from server
-    $.get(`http://localhost:8081/stories/${this.state.storyId}`)
+    $.get(`/stories/${this.state.storyId}`)
     .then(story => {
       console.log('Got story: ', story)
       //set state with this data
@@ -80,13 +80,12 @@ class Story extends React.Component {
 
     if (this.state.lines.length === this.state.users.length) {
     //If the story is complete
-    //http://localhost:8081/#/stories/580d1dc028d1c321909d6b33?_k=oxgpcp
       return (
         <div className="storyContainer" >
           <h2 className="title">{ this.state.title }</h2>
 
           {this.state.lines.map((line, i) =>
-            <Line line={line} />
+            <Line line={line} lock={true}/>
           )}
 
         </div>

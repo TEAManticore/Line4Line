@@ -73,7 +73,7 @@ module.exports = {
       new Story({title: title, length: numberUsers, users: [], numberUsers: numberUsers }).save()
       .then((story) => {
         console.log("Story saved: ", story)
-        res.json({"redirect":`http://localhost:8081/#/stories/${story._id}`})
+        res.json({"redirect":`/#/stories/${story._id}`})
       })
       .catch((err) => {
         return res.status(404).send('Story already created!')

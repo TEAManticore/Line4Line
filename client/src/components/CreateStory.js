@@ -9,7 +9,7 @@ const CreateStory = (props) => {
     newStory.numberUsers = document.getElementById('createNUsers').value
     $.ajax({
       type: 'POST',
-      url:'http://localhost:8081/stories', 
+      url:'/stories', 
       data: newStory, 
       dataType: 'json',
       success: function(res){
