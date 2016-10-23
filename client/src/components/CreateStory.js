@@ -33,7 +33,7 @@ const CreateStory = (props) => {
         </div>
         <div>  
           <h3>Story Length</h3>
-          <input className="createStoryInput createNumberInput" id="createLength" type="number" min="5" max="20" placeholder="10"/>
+          <input className="createStoryInput createNumberInput" id="createLength" type="number" min="1" max="10" placeholder="10"/>
         </div>
         <div className='createButtonWrap'>
           <input className="standardButton blackButton" type="submit" value="Create" />

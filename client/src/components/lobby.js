@@ -19,7 +19,6 @@ class Lobby extends React.Component {
         stories: stories
       })
     })   
-    console.log(this.props.route)
   }
 
   render () {
@@ -28,7 +27,7 @@ class Lobby extends React.Component {
         <Accordion />
         <div className='lobby'>
           {this.state.stories.map((story, i) =>
-            <OpenStory story={story} key={i}/>
+            <OpenStory story={story} key={i} />
           )}
         </div>
       </div>
