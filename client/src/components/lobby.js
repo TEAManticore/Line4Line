@@ -19,6 +19,7 @@ class Lobby extends React.Component {
         stories: stories
       })
     })   
+    console.log(this.props.route)
   }
 
   render () {
