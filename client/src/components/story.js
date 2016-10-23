@@ -73,31 +73,6 @@ class Story extends React.Component {
 
         </div>  
       )
-      
-    } else if (this.state.currentLine > 0 && this.state.currentUserIndex === 0) {
-    //If the current user is the creator of the story and has already written their line 
-      return (
-        <div className="storyContainer" >  
-          <h2 className="title">{ this.state.title }</h2>
-          
-          <Line line={currComplete} lock={true} />
-
-        </div>  
-      )
-
-    } else if (this.state.currentLine > this.state.currentUserIndex) {
-    //If the current user is not the creator and has already written their line
-      return (
-        <div className="storyContainer" >  
-          <h2 className="title">{ this.state.title }</h2>
-          
-          <div>
-            <Line line={prevLine} lock={true} />
-            <Line line={currComplete} lock={true} />
-          </div>
-
-        </div>  
-      )
     } else if (this.state.currentLine !== this.state.currentUserIndex) {
     //If the current user is not the creator and has not written their line and it is not their turn
       return (
@@ -109,7 +84,7 @@ class Story extends React.Component {
         </div>  
       )
     } else {
-    //If the current user is not the creator and has not written their line and it is their turn to write
+    //If the current user is not the creator and it is their turn to write
        return (
         <div className="storyContainer" >  
           <h2 className="title">{ this.state.title }</h2>
