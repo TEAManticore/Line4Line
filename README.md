@@ -8,3 +8,5 @@ npm install --save-dev json-loader
 npm install extract-text-webpack-plugin
 npm install style-loader
 npm install css-loader
+
+mongod --dbpath=./mongodb --port=51707
