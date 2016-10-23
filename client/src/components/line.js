@@ -1,6 +1,6 @@
 import React from 'react'
 import io from 'socket.io-client'
-const socket = io('http://localhost:8081')
+const socket = io()
 
 class Line extends React.Component {
   constructor(props){

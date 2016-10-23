@@ -13,7 +13,7 @@ class Lobby extends React.Component {
 
   componentDidMount () {
     //get an array of all the stories from the db that need more users
-    $.get('http://localhost:8081/stories')
+    $.get('/stories')
     .then(stories => {
       console.log('Got stories: ', stories);
       this.setState({
