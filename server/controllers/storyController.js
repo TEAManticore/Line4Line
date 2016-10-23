@@ -64,14 +64,13 @@ module.exports = {
   },
   createStory: (req, res) => {
     console.log(req.body)
-    const length = req.body.storyLength * 1
     const title = req.body.title
     const numberUsers = req.body.numberUsers * 1
 
     console.log(req.user)
     User.findOne({facebookId: req.user.facebookId})
     .then((user)=>{
-      new Story({title: title, length: length, users: [], numberUsers: numberUsers }).save()
+      new Story({title: title, length: numberUsers, users: [], numberUsers: numberUsers }).save()
       .then((story) => {
         console.log("Story saved: ", story)
         res.json({"redirect":`http://localhost:8081/#/stories/${story._id}`})
