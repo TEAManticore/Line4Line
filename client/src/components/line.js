@@ -61,7 +61,7 @@ class Line extends React.Component {
         !this.state.lock ?
           //if user hasn't submitted text, render form
           <form ref="form" onSubmit={this.handleSubmit.bind(this)} className="lineForm">
-            <h3 className="userLine">user</h3>
+          <img className="userLine" src={this.props.userphoto} />
             <input name="input" value={this.state.text} onChange={(e) => this.handleChange(e)} className="lineInput" type="text" placeholder="..." />
           </form> :
           //if user has already submitted text, render text as div
