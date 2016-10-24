@@ -5,9 +5,8 @@ const User = require('../models/user')
 
 module.exports = {
   getAllStories: (req, res) => {
-    Story.find({complete: false, $where: 'this.users.length < this.numberUsers'})
+    Story.find({})
     .then((stories) => {
-      console.log('~~~~~~~~~',req.user)
       res.json(stories)
     })
   },

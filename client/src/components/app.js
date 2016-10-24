@@ -27,7 +27,7 @@ class App extends React.Component {
       })
     })
     .catch(err => {
-      console.log('No user is signed in: ', err)
+      console.log('App.js - No user is signed in: ', err)
     })
   }
 
@@ -38,6 +38,7 @@ class App extends React.Component {
   }
 
   render () {
+    console.log('app user',this.state.currentUser)
     return (
       <div>
         <NavBar

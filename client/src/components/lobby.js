@@ -7,8 +7,12 @@ class Lobby extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      stories: []
+      allStories: [],
+      openStories: [],
+      completeStories: [], 
+      displayComplete: false
     }
+  this.toggleDisplay = this.toggleDisplay.bind(this)
   }
 
   componentDidMount () {
@@ -16,20 +20,45 @@ class Lobby extends React.Component {
     $.get('/stories')
     .then(stories => {
       console.log('Got stories: ', stories);
+      let completeStories = stories.filter(story => story.complete)
+      console.log('comstor: ',completeStories)
+      let openStories = stories.filter(story => story.length > story.lines.length)
+      console.log('openstor: ', openStories)
       this.setState({
-        stories: stories
+        allStories: stories,
+        openStories: openStories,
+        completeStories: completeStories
       })
     })   
   }
 
+  toggleDisplay () {
+    this.setState({
+      displayComplete: !this.state.displayComplete
+    })
+  }
+
   render () {
+    var displayButtonText = this.state.displayComplete ? 'Display Open' : 'Display Complete'
     return (
       <div>
         <Accordion />
+        <button className="standardButton blackButton" onClick={this.toggleDisplay}>{displayButtonText}</button>
         <div className='lobby'>
-          {this.state.stories.map((story, i) =>
-            <OpenStory story={story} key={i} />
-          )}
+          { this.state.displayComplete ?
+
+            this.state.completeStories.map((story, i) =>
+              <OpenStory story={story} key={i} />
+            )
+
+            :
+
+            this.state.openStories.map((story, i) =>
+              <OpenStory story={story} key={i} />
+            )
+            
+          }
+
         </div>
       </div>
     )
