@@ -1,3 +1,16 @@
 .lobby {
   text-align: left;
 }
+
+.lobbyLabels {
+  padding: 15px;
+}
+
+.storyNames {
+  display: inline-block;
+  width: 50%;
+}
+
+.numberOfUsers {
+  display: inline-block;
+}
