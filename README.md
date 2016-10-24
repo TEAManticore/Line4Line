@@ -25,13 +25,6 @@ npm install
 
 Start up the Express server on port 8081 with `npm start`.
 
-npm install webpack-dev-server@1.16.2 -g
-npm install -g request
-npm install --save-dev json-loader
-npm install extract-text-webpack-plugin
-npm install style-loader
-npm install css-loader
-
 
 ##Starting up MongoDB
 We recommend creating a folder on your desktop with the name of your db. Then cd to your desktop and run:
