@@ -21,10 +21,10 @@ const CreateStory = (props) => {
 
   return (
     <div className="createStoryWrap">
-      <h3>Our story begins...</h3>
+      <h3>A super creative title</h3>
       <form onSubmit={createStory}>
         <div>  
-          <input className="createStoryInput createTitleInput" id="createTitle" type="text" placeholder="A super creative name..." />
+          <input className="createStoryInput createTitleInput" id="createTitle" type="text" placeholder="The Tale of the..." />
         </div>
         <div>
           <h3>Number of users</h3>

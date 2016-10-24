@@ -39,12 +39,16 @@ class Lobby extends React.Component {
   }
 
   render () {
-    var displayButtonText = this.state.displayComplete ? 'Display Open' : 'Display Complete'
+    var displayButtonText = this.state.displayComplete ? 'Show Open' : 'Show Complete'
     return (
       <div>
         <Accordion />
-        <button className="standardButton blackButton" onClick={this.toggleDisplay}>{displayButtonText}</button>
         <div className='lobby'>
+          <div className="lobbyLabels">
+            <h4 className="storyNames">Story Name</h4>
+            <h4 className="numberOfUsers">Number of users</h4>
+            <h4 className="toggleDisplayLink"><a onClick={this.toggleDisplay}>{displayButtonText}</a></h4>
+          </div>
           { this.state.displayComplete ?
 
             this.state.completeStories.map((story, i) =>

@@ -1,9 +1,11 @@
 .openStoryWrap {
   background-color: white;
   color: black;
+  border: solid 1px #d7d7d7;
   border-radius: 5px;
   margin: 10px;
   padding: 10px;
+  box-shadow: 3px 3px 0px #d7d7d7;
 }
 
 .openStoryTitle {
