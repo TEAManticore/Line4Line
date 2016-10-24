@@ -10,6 +10,7 @@
   "description": "Build stories one line at a time",
   "main": "server.js",
   "scripts": {
+    "postinstall": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/.bin/nodemon server/server.js --ignore client/",
     "webpack": "webpack",
