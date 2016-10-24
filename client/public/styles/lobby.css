@@ -1,9 +1,10 @@
 .lobby {
   text-align: left;
+  padding: 5px;
 }
 
 .lobbyLabels {
-  padding: 15px;
+  padding: 0px 15px 0px 15px;
 }
 
 .storyNames {
@@ -13,4 +14,14 @@
 
 .numberOfUsers {
   display: inline-block;
+  width: 20%;
+}
+
+.toggleDisplayLink{
+  text-align: right;
+  display: inline-block;
+  width: 25%;
+}
+a:hover {
+  color: #999 !important;
 }

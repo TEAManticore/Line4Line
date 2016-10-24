@@ -1,9 +1,9 @@
 .navbarWrap {
   color: white;
   height: 80px;
-  border-bottom: 3px solid white;
   margin-bottom: 15px;
   background-color: black;
+  box-shadow: 2px 2px 3px #d7d7d7;
 }
 
 .headerLogo {

@@ -120,10 +120,11 @@ body {
   font-size: 50px;
 }.lobby {
   text-align: left;
+  padding: 5px;
 }
 
 .lobbyLabels {
-  padding: 15px;
+  padding: 0px 15px 0px 15px;
 }
 
 .storyNames {
@@ -133,13 +134,25 @@ body {
 
 .numberOfUsers {
   display: inline-block;
-}.openStoryWrap {
+  width: 20%;
+}
+
+.toggleDisplayLink{
+  text-align: right;
+  display: inline-block;
+  width: 25%;
+}
+a:hover {
+  color: #999 !important;
+}
+.openStoryWrap {
   background-color: white;
   color: black;
   border: solid 1px #d7d7d7;
   border-radius: 5px;
   margin: 10px;
   padding: 10px;
+  box-shadow: 2px 2px 3px #d7d7d7;
 }
 
 .openStoryTitle {
@@ -242,13 +255,13 @@ body {
 
 .toggleButtonWrap {
   width: 300px;
-  margin: auto;
+  margin: 30px auto 30px auto;
 }.navbarWrap {
   color: white;
   height: 80px;
-  border-bottom: 3px solid white;
   margin-bottom: 15px;
   background-color: black;
+  box-shadow: 2px 2px 3px #d7d7d7;
 }
 
 .headerLogo {
