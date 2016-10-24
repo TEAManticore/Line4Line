@@ -23,7 +23,21 @@ This app allows people to write a story together one line at a time -- with a tw
 npm install
 ```
 
-Start up the Express server on port 8081 with `npm start`.
+Start up the Express server on port 8081 with `npm start`. 
+
+##Facebook Auth
+You will need to create an app at developers.facebook.com for Facebook authentication to work. Add all of your team members as developers to this app. Facebook will generate an App ID and App Secret for you.
+
+Create a file named `secretsecrets.js` and save it in the `server` folder. Make sure you add this file to your `.gitignore`. This file should have the following:
+
+```
+module.exports = {
+ appId : your-fb-app-id,
+ appSecret : 'your-fb-secret',
+ secret : 'your-secret'
+}
+```
+The `appId` will be a number. `appSecret` and `secret` should be strings. The `secret` can be whatever you want as long as it is a string.
 
 
 ##Starting up MongoDB
