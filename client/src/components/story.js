@@ -65,7 +65,8 @@ class Story extends React.Component {
     this.setState({
       lines: story.lines,
       currentLine: story.currentLine,
-      users: story.users
+      users: story.users,
+      complete: story.complete
     })
   }
 
@@ -78,14 +79,14 @@ class Story extends React.Component {
     //A complete line that the current user wrote.
     var currComplete = this.state.lines[this.state.currentUserIndex]
 
-    if (this.state.lines.length === this.state.users.length) {
+    if (this.state.complete) {
     //If the story is complete
       return (
         <div className="storyContainer" >
           <h2 className="title">{ this.state.title }</h2>
 
           {this.state.lines.map((line, i) =>
-            <Line line={line} lock={true} key={i} />
+            <Line line={line} lock={true} key={i} username={this.state.currentUser.name} userphoto={this.state.currentUser.profileImage}/>
           )}
 
         </div>
@@ -96,7 +97,7 @@ class Story extends React.Component {
         <div className="storyContainer" >
           <h2 className="title">{ this.state.title }</h2>
 
-          <Line line={currIncomplete} lock={false} />
+          <Line line={currIncomplete} lock={false} username={this.state.currentUser.name} userphoto={this.state.currentUser.profileImage}/>
 
         </div>
       )
@@ -118,7 +119,7 @@ class Story extends React.Component {
 
           <div>
             <Line line={prevLine} lock={true} />
-            <Line line={currIncomplete} lock={false} />
+            <Line line={currIncomplete} lock={false} username={this.state.currentUser.name} userphoto={this.state.currentUser.profileImage}/>
           </div>
 
         </div>
