@@ -1,5 +1,5 @@
 import React from 'react'
-import Login from './Login'
+import Login from './login'
 
 const NavBar = (props) => {
   return (

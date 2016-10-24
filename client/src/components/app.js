@@ -1,8 +1,8 @@
 import React from 'react'
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
-import Lobby from './Lobby'
-import Story from './Story'
-import Login from './Login'
+import Lobby from './lobby'
+import Story from './story'
+import Login from './login'
 import CreateStory from './CreateStory'
 import NavBar from './NavBar'
 
