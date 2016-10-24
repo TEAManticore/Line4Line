@@ -5,6 +5,8 @@
   height: auto;
   margin: 10px;
   padding: 10px;
+  border: solid 1px #d7d7d7;
+  box-shadow: 2px 2px 3px #d7d7d7;
 }
 
 .createStoryInput {
