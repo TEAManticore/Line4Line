@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './src/components/App'
+import App from './src/components/app'
 require('./public/styles/main.css')
 require('./public/styles/line.css')
 require('./public/styles/story.css')
