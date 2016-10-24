@@ -10,7 +10,7 @@ const morgan           = require('morgan')
 const router           = require('./routes/routes')
 const User             = require('./models/user')
 const stories          = require('./controllers/storyController')
-const charles          = require('secretsecrets')
+const charles          = require('./secretsecrets')
 
 const port             = process.env.PORT || 8081
 
