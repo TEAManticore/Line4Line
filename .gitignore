@@ -4,3 +4,4 @@ dist/bundle.js
 client/src/dummyData.js
 dist/styles.css
 ./server/db
+./server/secretsecrets.js
